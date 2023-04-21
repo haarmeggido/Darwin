@@ -1,4 +1,4 @@
-lexer grammar CPP14Lexer;
+lexer grammar Lexer;
 
 IntegerLiteral:
 	DecimalLiteral Integersuffix?
@@ -44,147 +44,147 @@ Auto: 'auto';
 
 Bool: 'bool';
 
-Break: 'break';
+Break: 'rozłam';
 
-Case: 'case';
+Case: 'przypadek';
 
-Catch: 'catch';
+Catch: 'złap';
 
-Char: 'char';
+Char: 'znak';
 
-Char16: 'char16_t';
+Char16: 'znak16_t';
 
-Char32: 'char32_t';
+Char32: 'znak32_t';
 
-Class: 'class';
+Class: 'klasa';
 
-Const: 'const';
+Const: 'stała';
 
 Constexpr: 'constexpr';
 
-Const_cast: 'const_cast';
+Const_cast: 'stały_rzut';
 
-Continue: 'continue';
+Continue: 'kontynuuj';
 
-Decltype: 'decltype';
+Decltype: 'dekltyp';
 
-Default: 'default';
+Default: 'domyślny';
 
-Delete: 'delete';
+Delete: 'usuń';
 
-Do: 'do';
+Do: 'rób';
 
-Double: 'double';
+Double: 'podwójny';
 
-Dynamic_cast: 'dynamic_cast';
+Dynamic_cast: 'dynamiczny_rzut';
 
-Else: 'else';
+Else: 'jeśli_nie';
 
-Enum: 'enum';
+Enum: 'wyliczenie';
 
-Explicit: 'explicit';
+//Explicit: 'explicit';
 
-Export: 'export';
+Export: 'wyeksportuj';
 
-Extern: 'extern';
+Extern: 'zewnętrzny';
 
 //DO NOT RENAME - PYTHON NEEDS True and False
-False_: 'false';
+False_: 'herezja'; //Nie wiem, czy powinno się to tłumaczyć
 
-Final: 'final';
+Final: 'ostateczny';
 
-Float: 'float';
+Float: 'zmiennoprzecinkowy';
 
-For: 'for';
+For: 'dla';
 
-Friend: 'friend';
+Friend: 'przyjaciel';
 
-Goto: 'goto';
+Goto: 'idźdo';
 
-If: 'if';
+If: 'w_przypadku_gdy';
 
-Inline: 'inline';
+Inline: 'wlinii';
 
-Int: 'int';
+Int: 'całk';
 
-Long: 'long';
+Long: 'długa';
 
-Mutable: 'mutable';
+Mutable: 'zmienny'; //może zmienialny
 
-Namespace: 'namespace';
+Namespace: 'przestrzeńnazw';
 
-New: 'new';
+New: 'nowy';
 
-Noexcept: 'noexcept';
+Noexcept: 'bezwyjątków';
 
-Nullptr: 'nullptr';
+Nullptr: 'pustywskaźnik';
 
 Operator: 'operator';
 
-Override: 'override';
+Override: 'nadpisanie'; //albo nadpisanie
 
-Private: 'private';
+Private: 'prywatna';
 
-Protected: 'protected';
+Protected: 'chroniona';
 
-Public: 'public';
+Public: 'publiczna';
 
-Register: 'register';
+Register: 'dowykazu';
 
-Reinterpret_cast: 'reinterpret_cast';
+Reinterpret_cast: 'zreinterpretuj_rzut';
 
-Return: 'return';
+Return: 'zwróć';
 
-Short: 'short';
+Short: 'krótka';
 
-Signed: 'signed';
+Signed: 'przypisana';
 
-Sizeof: 'sizeof';
+Sizeof: 'rozmiaru';
 
 Static: 'static';
 
-Static_assert: 'static_assert';
+Static_assert: 'statyczne_zapewnienie';
 
-Static_cast: 'static_cast';
+Static_cast: 'statyczny_rzut';
 
-Struct: 'struct';
+Struct: 'struktura';
 
-Switch: 'switch';
+Switch: 'przełącz';
 
-Template: 'template';
+Template: 'szablon';
 
-This: 'this';
+This: 'to';
 
-Thread_local: 'thread_local';
+Thread_local: 'wątek_lokalny';
 
-Throw: 'throw';
+Throw: 'wyrzuć';
 
 //DO NOT RENAME - PYTHON NEEDS True and False
-True_: 'true';
+True_: 'objawienie'; //propozycji wiele: prawda, objawienie, fakt, wiara
 
-Try: 'try';
+Try: 'spróbuj';
 
-Typedef: 'typedef';
+Typedef: 'definiowanietypu';
 
-Typeid_: 'typeid';
+Typeid_: 'wytypujid';
 
-Typename_: 'typename';
+Typename_: 'wytypujnazwę';
 
-Union: 'union';
+Union: 'jedność';
 
-Unsigned: 'unsigned';
+Unsigned: 'nieprzypisana'; //może poprawić
 
-Using: 'using';
+Using: 'używając';
 
-Virtual: 'virtual';
+Virtual: 'wirtualna';
 
-Void: 'void';
+Void: 'otchłań';
 
-Volatile: 'volatile';
+Volatile: 'zwiewna';
 
-Wchar: 'wchar_t';
+//Wchar: 'wchar_t';
 
-While: 'while';
+While: 'dopóty';
 /*Operators*/
 
 LeftParen: '(';
@@ -217,7 +217,7 @@ Or: '|';
 
 Tilde: '~';
 
-Not: '!' | 'not';
+Not: '!' | 'nie';
 
 Assign: '=';
 
@@ -253,9 +253,9 @@ LessEqual: '<=';
 
 GreaterEqual: '>=';
 
-AndAnd: '&&' | 'and';
+AndAnd: '&&' | 'oraz';
 
-OrOr: '||' | 'or';
+OrOr: '||' | 'lub';
 
 PlusPlus: '++';
 
