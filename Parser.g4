@@ -17,19 +17,19 @@ pierwotneWyrazenie:
 wyrażenieId: niewykwalifikowaneId | wykwalifikowane;
 
 niewykwalifikowaneId:
-	Identifier
+	Identyfikator
 	| operatorFunctionId
 	| conversionFunctionId
 	| literalOperatorId
-	| Tylda (className | decltypeSpecifier)
+	| Tylda (className | dekltypSpecyfikator)
 	| templateId;
 
 wykwalifikowane: zagnieżdżonySpecyfikatorImienia Szablon? niewykwalifikowaneId;
 
 zagnieżdżonySpecyfikatorImienia:
-	(theTypeName | namespaceName | decltypeSpecifier)? Dwudwukropek
+	(theTypeName | namespaceName | dekltypSpecyfikator)? Dwudwukropek
 	| zagnieżdżonySpecyfikatorImienia (
-		Identifier
+		Identyfikator
 		| Szablon? simpleTemplateId
 	) Dwudwukropek;
 
@@ -48,9 +48,9 @@ listaPrzechwytywania: zdobycz (Przecinek zdobycz)* Elipsa?;
 
 zdobycz: prostaZdobycz | inicjowaniePrzechwytywania;
 
-prostaZdobycz: Oraz? Identifier | To;
+prostaZdobycz: Oraz? Identyfikator | To;
 
-inicjowaniePrzechwytywania: Oraz? Identifier initializer;
+inicjowaniePrzechwytywania: Oraz? Identyfikator initializer;
 
 deklaracjaLambda:
 	LewaParenteza parameterDeclarationClause? PrawaParenteza Zmienny? exceptionSpecification?
@@ -87,14 +87,14 @@ listaWyrażeń: initializerList;
 nazwaPseudoDestruktora:
 	zagnieżdżonySpecyfikatorImienia? (theTypeName Dwudwukropek)? Tylda theTypeName
 	| zagnieżdżonySpecyfikatorImienia Szablon simpleTemplateId Dwudwukropek Tylda theTypeName
-	| Tylda decltypeSpecifier;
+	| Tylda dekltypSpecyfikator;
 
 jednoargumentoweWyrażenie:
 	przyrostkoweWyrażenie
 	| (Inkrementacja | Dekrementacja | operatorJednoargumentowca | Rozmiaru) jednoargumentoweWyrażenie
 	| Rozmiaru (
 		LewaParenteza theTypeId PrawaParenteza
-		| Elipsa LewaParenteza Identifier PrawaParenteza
+		| Elipsa LewaParenteza Identyfikator PrawaParenteza
 	)
 	| Alignof LewaParenteza theTypeId PrawaParenteza
 	| wyrażenieBezWyjątków
@@ -217,16 +217,16 @@ deklaracja:
 
 wyrażenieOznakowane:
 	atrybutSpecyfikatorSekw? (
-		Identifier
+		Identyfikator
 		| Przypadek wyrażenieStałe
 		| Domyślny
 	) Dwukropek deklaracja;
 
 wyrażenieFormuły: wyrażenie? Średnik;
 
-wyrażenieZłożone: LewaKlamra statementSeq? PrawaKlamra;
+wyrażenieZłożone: LewaKlamra deklaracjaSekw? PrawaKlamra;
 
-statementSeq: deklaracja+;
+deklaracjaSekw: deklaracja+;
 
 wyrażenieWyboru:
 	W_przypadku_gdy LewaParenteza warunek PrawaParenteza deklaracja (Jeśli_nie deklaracja)?
@@ -244,62 +244,62 @@ wyrażenieIteracji:
 	| Rób deklaracja Dopóty LewaParenteza wyrażenie PrawaParenteza Średnik
 	| Dla LewaParenteza (
 		forInitStatement warunek? Średnik wyrażenie?
-		| forRangeDeclaration Dwukropek forRangeInitializer
+		| forRangeDeclaration Dwukropek inicjalizerDlaZasięg
 	) PrawaParenteza deklaracja;
 
-forInitStatement: wyrażenieFormuły | simpleDeclaration;
+forInitStatement: wyrażenieFormuły | prostaDeklaracja;
 
 forRangeDeclaration:
 	atrybutSpecyfikatorSekw? declSpecifierSeq declarator;
 
-forRangeInitializer: wyrażenie | klamraListaInicj;
+inicjalizerDlaZasięg: wyrażenie | klamraListaInicj;
 
 wyrażenieSkoku:
 	(
 		Rozłam
 		| Kontynuuj
 		| Zwróć (wyrażenie | klamraListaInicj)?
-		| IdźDo Identifier
+		| IdźDo Identyfikator
 	) Średnik;
 
-wyrażenieDeklaracji: blockDeclaration;
+wyrażenieDeklaracji: blokDeklaracja;
 /*Declarations*/
 
 declarationseq: declaration+;
 
 declaration:
-	blockDeclaration
-	| functionDefinition
-	| templateDeclaration
-	| explicitInstantiation
-	| explicitSpecialization
-	| linkageSpecification
-	| namespaceDefinition
-	| emptyDeclaration
-	| attributeDeclaration;
+	blokDeklaracja
+	| funkcjaDefinicja
+	| szablonDeklaracja
+	| jawnaInstantacja
+	| jawnaSpecjalizacja
+	| łączonaSpecyfikacja
+	| przestrzeńnazwDefinicja
+	| pustaDeklaracja
+	| atrybutDeklaracja;
 
-blockDeclaration:
-	simpleDeclaration
+blokDeklaracja:
+	prostaDeklaracja
 	| asmDefinition
-	| namespaceAliasDefinition
+	| przestrzeńnazwAliasDefinicja
 	| staticAssertDeclaration
 	| useDeclaration
 	| używającDirective
 	| aliasDeclaration
 	| opaqueEnumDeclaration;
 aliasDeclaration:
-	Używając Identifier atrybutSpecyfikatorSekw? Przypisanie theTypeId Średnik;
+	Używając Identyfikator atrybutSpecyfikatorSekw? Przypisanie theTypeId Średnik;
 
-simpleDeclaration:
+prostaDeklaracja:
 	declSpecifierSeq? initDeclaratorList? Średnik
 	| atrybutSpecyfikatorSekw declSpecifierSeq? initDeclaratorList Średnik;
 
 staticAssertDeclaration:
 	Statyczne_zapewnienie LewaParenteza wyrażenieStałe Przecinek LiterałŁańcuchowy PrawaParenteza Średnik;
 
-emptyDeclaration: Średnik;
+pustaDeklaracja: Średnik;
 
-attributeDeclaration: atrybutSpecyfikatorSekw Średnik;
+atrybutDeklaracja: atrybutSpecyfikatorSekw Średnik;
 
 declSpecifier:
 	storageKlasaSpecifier
@@ -320,7 +320,7 @@ storageKlasaSpecifier:
 
 functionSpecifier: WLinii | Wirtualna | Sprecyzowany;
 
-typedefName: Identifier;
+typedefName: Identyfikator;
 
 typeSpecifier:
 	trailingTypeSpecifier
@@ -338,30 +338,30 @@ typeSpecifierSeq: typeSpecifier+ atrybutSpecyfikatorSekw?;
 trailingTypeSpecifierSeq:
 	trailingTypeSpecifier+ atrybutSpecyfikatorSekw?;
 
-simpleTypeLengthModifier:
+prostyTypDługośćModyfikator:
 	Krótka
 	| Długa;
 	
-simpleTypeSignednessModifier:
+prostyTypPrzypisanieModyfikator:
 	Nieprzypisana
 	| Przypisana;
 
 simpleTypeSpecifier:
 	zagnieżdżonySpecyfikatorImienia? theTypeName
 	| zagnieżdżonySpecyfikatorImienia Szablon simpleTemplateId
-	| simpleTypeSignednessModifier
-	| simpleTypeSignednessModifier? simpleTypeLengthModifier+
-	| simpleTypeSignednessModifier? Znak
-	| simpleTypeSignednessModifier? Znak16_t
-	| simpleTypeSignednessModifier? Znak32_t
-	| simpleTypeSignednessModifier? Wchar
+	| prostyTypPrzypisanieModyfikator
+	| prostyTypPrzypisanieModyfikator? prostyTypDługośćModyfikator+
+	| prostyTypPrzypisanieModyfikator? Znak
+	| prostyTypPrzypisanieModyfikator? Znak16_t
+	| prostyTypPrzypisanieModyfikator? Znak32_t
+	| prostyTypPrzypisanieModyfikator? Wchar
 	| Bool
-	| simpleTypeSignednessModifier? simpleTypeLengthModifier* Całk
+	| prostyTypPrzypisanieModyfikator? prostyTypDługośćModyfikator* Całk
 	| Zmiennoprzecinkowy
-	| simpleTypeLengthModifier? Podwójny
+	| prostyTypDługośćModyfikator? Podwójny
 	| Otchłań
 	| Auto
-	| decltypeSpecifier;
+	| dekltypSpecyfikator;
 
 theTypeName:
 	className
@@ -369,29 +369,29 @@ theTypeName:
 	| typedefName
 	| simpleTemplateId;
 
-decltypeSpecifier:
+dekltypSpecyfikator:
 	Dekltyp LewaParenteza (wyrażenie | Auto) PrawaParenteza;
 
 elaboratedTypeSpecifier:
 	classKey (
-		atrybutSpecyfikatorSekw? zagnieżdżonySpecyfikatorImienia? Identifier
+		atrybutSpecyfikatorSekw? zagnieżdżonySpecyfikatorImienia? Identyfikator
 		| simpleTemplateId
 		| zagnieżdżonySpecyfikatorImienia Szablon? simpleTemplateId
 	)
-	| Wyliczenie zagnieżdżonySpecyfikatorImienia? Identifier;
+	| Wyliczenie zagnieżdżonySpecyfikatorImienia? Identyfikator;
 
-enumName: Identifier;
+enumName: Identyfikator;
 
 enumSpecifier:
 	enumHead LewaKlamra (enumeratorList Przecinek?)? PrawaKlamra;
 
 enumHead:
 	enumkey atrybutSpecyfikatorSekw? (
-		zagnieżdżonySpecyfikatorImienia? Identifier
+		zagnieżdżonySpecyfikatorImienia? Identyfikator
 	)? enumbase?;
 
 opaqueEnumDeclaration:
-	enumkey atrybutSpecyfikatorSekw? Identifier enumbase? Średnik;
+	enumkey atrybutSpecyfikatorSekw? Identyfikator enumbase? Średnik;
 
 enumkey: Wyliczenie (Klasa | Struktura)?;
 
@@ -402,20 +402,20 @@ enumeratorList:
 
 enumeratorDefinition: enumerator (Przypisanie wyrażenieStałe)?;
 
-enumerator: Identifier;
+enumerator: Identyfikator;
 
 namespaceName: originalNamespaceName | namespaceAlias;
 
-originalNamespaceName: Identifier;
+originalNamespaceName: Identyfikator;
 
-namespaceDefinition:
-	WLinii? Przestrzeńnazw (Identifier | originalNamespaceName)? LewaKlamra namespaceBody = declarationseq
+przestrzeńnazwDefinicja:
+	WLinii? Przestrzeńnazw (Identyfikator | originalNamespaceName)? LewaKlamra namespaceBody = declarationseq
 		? PrawaKlamra;
 
-namespaceAlias: Identifier;
+namespaceAlias: Identyfikator;
 
-namespaceAliasDefinition:
-	Przestrzeńnazw Identifier Przypisanie qualifiednamespacespecifier Średnik;
+przestrzeńnazwAliasDefinicja:
+	Przestrzeńnazw Identyfikator Przypisanie qualifiednamespacespecifier Średnik;
 
 qualifiednamespacespecifier: zagnieżdżonySpecyfikatorImienia? namespaceName;
 
@@ -427,7 +427,7 @@ używającDirective:
 
 asmDefinition: Asm LewaParenteza LiterałŁańcuchowy PrawaParenteza Średnik;
 
-linkageSpecification:
+łączonaSpecyfikacja:
 	Zewnętrzny LiterałŁańcuchowy (
 		LewaKlamra declarationseq? PrawaKlamra
 		| declaration
@@ -444,9 +444,9 @@ alignmentspecifier:
 
 attributeList: attribute (Przecinek attribute)* Elipsa?;
 
-attribute: (attributeNamespace Dwudwukropek)? Identifier attributeArgumentClause?;
+attribute: (attributeNamespace Dwudwukropek)? Identyfikator attributeArgumentClause?;
 
-attributeNamespace: Identifier;
+attributeNamespace: Identyfikator;
 
 attributeArgumentClause: LewaParenteza balancedTokenSeq? PrawaParenteza;
 
@@ -547,7 +547,7 @@ parameterDeclaration:
 		)?
 	);
 
-functionDefinition:
+funkcjaDefinicja:
 	atrybutSpecyfikatorSekw? declSpecifierSeq? declarator virtualSpecifierSeq? functionBody;
 
 functionBody:
@@ -573,7 +573,7 @@ initializerList:
 klamraListaInicj: LewaKlamra (initializerList Przecinek?)? PrawaKlamra;
 /*Klasaes*/
 
-className: Identifier | simpleTemplateId;
+className: Identyfikator | simpleTemplateId;
 
 classSpecifier:
 	classHead LewaKlamra memberSpecification? PrawaKlamra;
@@ -597,11 +597,11 @@ memberSpecification:
 
 memberdeclaration:
 	atrybutSpecyfikatorSekw? declSpecifierSeq? memberDeclaratorList? Średnik
-	| functionDefinition
+	| funkcjaDefinicja
 	| staticAssertDeclaration
-	| templateDeclaration
+	| szablonDeklaracja
 	| aliasDeclaration
-	| emptyDeclaration;
+	| pustaDeklaracja;
 //	| UseDeclaration
 memberDeclaratorList:
 	memberDeclarator (Przecinek memberDeclarator)*;
@@ -611,7 +611,7 @@ memberDeclarator:
 		virtualSpecifierSeq? pureSpecifier?
 		| braceOrEqualInitializer?
 	)
-	| Identifier? atrybutSpecyfikatorSekw? Dwukropek wyrażenieStałe;
+	| Identyfikator? atrybutSpecyfikatorSekw? Dwukropek wyrażenieStałe;
 
 virtualSpecifierSeq: virtualSpecifier+;
 
@@ -639,7 +639,7 @@ baseSpecifier:
 
 classOrDeclType:
 	zagnieżdżonySpecyfikatorImienia? className
-	| decltypeSpecifier;
+	| dekltypSpecyfikator;
 
 baseTypeSpecifier: classOrDeclType;
 
@@ -663,19 +663,19 @@ memInitializer:
 		| klamraListaInicj
 	);
 
-meminitializerid: classOrDeclType | Identifier;
+meminitializerid: classOrDeclType | Identyfikator;
 /*Overloading*/
 
 operatorFunctionId: Operator theOperator;
 
 literalOperatorId:
 	Operator (
-		LiterałŁańcuchowy Identifier
+		LiterałŁańcuchowy Identyfikator
 		| UserDefinedStringLiteral
 	);
 /*Templates*/
 
-templateDeclaration:
+szablonDeklaracja:
 	Szablon MniejNiż templateparameterList WięcejNiż declaration;
 
 templateparameterList:
@@ -687,7 +687,7 @@ typeParameter:
 	(
 		(Szablon MniejNiż templateparameterList WięcejNiż)? Klasa
 		| WytypujNazwę
-	) ((Elipsa? Identifier?) | (Identifier? Przypisanie theTypeId));
+	) ((Elipsa? Identyfikator?) | (Identyfikator? Przypisanie theTypeId));
 
 simpleTemplateId:
 	templateName MniejNiż templateArgumentList? WięcejNiż;
@@ -696,7 +696,7 @@ templateId:
 	simpleTemplateId
 	| (operatorFunctionId | literalOperatorId) MniejNiż templateArgumentList? WięcejNiż;
 
-templateName: Identifier;
+templateName: Identyfikator;
 
 templateArgumentList:
 	templateArgument Elipsa? (Przecinek templateArgument Elipsa?)*;
@@ -705,13 +705,13 @@ templateArgument: theTypeId | wyrażenieStałe | wyrażenieId;
 
 typeNameSpecifier:
 	WytypujNazwę zagnieżdżonySpecyfikatorImienia (
-		Identifier
+		Identyfikator
 		| Szablon? simpleTemplateId
 	);
 
-explicitInstantiation: Zewnętrzny? Szablon declaration;
+jawnaInstantacja: Zewnętrzny? Szablon declaration;
 
-explicitSpecialization: Szablon MniejNiż WięcejNiż declaration;
+jawnaSpecjalizacja: Szablon MniejNiż WięcejNiż declaration;
 /*Exception handling*/
 
 spróbujBlok: Spróbuj wyrażenieZłożone handlerSeq;

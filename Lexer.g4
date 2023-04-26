@@ -291,13 +291,13 @@ fragment Universalcharactername:
 	'\\u' Hexquad
 	| '\\U' Hexquad Hexquad;
 
-Identifier:
+Identyfikator:
 	/*
-	 Identifiernondigit | Identifier Identifiernondigit | Identifier DIGIT
+	 Identyfikatorniecyfrowy | Identyfikator Identyfikatorniecyfrowy | Identyfikator DIGIT
 	 */
-	Identifiernondigit (Identifiernondigit | DIGIT)*;
+	Identyfikatorniecyfrowy (Identyfikatorniecyfrowy | DIGIT)*;
 
-fragment Identifiernondigit: NONDIGIT | Universalcharactername;
+fragment Identyfikatorniecyfrowy: NONDIGIT | Universalcharactername;
 
 fragment NONDIGIT: [a-zA-Z_];
 
@@ -393,7 +393,7 @@ UserDefinedFloatingLiteral:
 	| Digitsequence Exponentpart Udsuffix;
 UserDefinedStringLiteral: LiterałŁańcuchowy Udsuffix;
 UserDefinedCharacterLiteral: LiterałSymbolu Udsuffix;
-fragment Udsuffix: Identifier;
+fragment Udsuffix: Identyfikator;
 Whitespace: [ \t]+ -> skip;
 Newline: ('\r' '\n'? | '\n') -> skip;
 BlockComment: '/*' .*? '*/' -> skip;
