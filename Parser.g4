@@ -111,7 +111,7 @@ noweWyrażenie:
 
 noweMiejsceDocelowe: LewaParenteza listaWyrażeń PrawaParenteza;
 
-nowyTypId: typeSpecifierSeq nowyDeklarator?;
+nowyTypId: typSpecyfikatorSekw nowyDeklarator?;
 
 nowyDeklarator:
 	pointerOperator nowyDeklarator?
@@ -333,9 +333,9 @@ trailingTypeSpecifier:
 	| typeNameSpecifier
 	| cvQualifier;
 
-typeSpecifierSeq: typeSpecifier+ atrybutSpecyfikatorSekw?;
+typSpecyfikatorSekw: typeSpecifier+ atrybutSpecyfikatorSekw?;
 
-trailingTypeSpecifierSeq:
+końcowyTypSpecyfikatorSekw:
 	trailingTypeSpecifier+ atrybutSpecyfikatorSekw?;
 
 prostyTypDługośćModyfikator:
@@ -395,7 +395,7 @@ opaqueEnumDeclaration:
 
 enumkey: Wyliczenie (Klasa | Struktura)?;
 
-enumbase: Dwukropek typeSpecifierSeq;
+enumbase: Dwukropek typSpecyfikatorSekw;
 
 enumeratorList:
 	enumeratorDefinition (Przecinek enumeratorDefinition)*;
@@ -489,7 +489,7 @@ parametersAndQualifiers:
 		exceptionSpecification? atrybutSpecyfikatorSekw?;
 
 trailingReturnType:
-	Strzałka trailingTypeSpecifierSeq abstractDeclarator?;
+	Strzałka końcowyTypSpecyfikatorSekw abstractDeclarator?;
 
 pointerOperator:
 	(Oraz | Oraz) atrybutSpecyfikatorSekw?
@@ -503,7 +503,7 @@ refqualifier: Oraz | Oraz;
 
 declaratorid: Elipsa? wyrażenieId;
 
-theTypeId: typeSpecifierSeq abstractDeclarator?;
+theTypeId: typSpecyfikatorSekw abstractDeclarator?;
 
 abstractDeclarator:
 	pointerAbstractDeclarator
@@ -648,7 +648,7 @@ accessSpecifier: Prywatna | Chroniona | Publiczna;
 
 conversionFunctionId: Operator conversionTypeId;
 
-conversionTypeId: typeSpecifierSeq conversionDeclarator?;
+conversionTypeId: typSpecyfikatorSekw conversionDeclarator?;
 
 conversionDeclarator: pointerOperator conversionDeclarator?;
 
@@ -714,18 +714,18 @@ jawnaInstantacja: Zewnętrzny? Szablon declaration;
 jawnaSpecjalizacja: Szablon MniejNiż WięcejNiż declaration;
 /*Exception handling*/
 
-spróbujBlok: Spróbuj wyrażenieZłożone handlerSeq;
+spróbujBlok: Spróbuj wyrażenieZłożone obsługaSekw;
 
 functionTryBlock:
-	Spróbuj conStrukturaorInitializer? wyrażenieZłożone handlerSeq;
+	Spróbuj conStrukturaorInitializer? wyrażenieZłożone obsługaSekw;
 
-handlerSeq: handler+;
+obsługaSekw: obsługa+;
 
-handler:
-	Złap LewaParenteza exceptionDeclaration PrawaParenteza wyrażenieZłożone;
+obsługa:
+	Złap LewaParenteza wyjątekDeklaracja PrawaParenteza wyrażenieZłożone;
 
-exceptionDeclaration:
-	atrybutSpecyfikatorSekw? typeSpecifierSeq (
+wyjątekDeklaracja:
+	atrybutSpecyfikatorSekw? typSpecyfikatorSekw (
 		declarator
 		| abstractDeclarator
 	)?
