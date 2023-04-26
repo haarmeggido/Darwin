@@ -250,11 +250,11 @@ RightShiftAssign: '>>=';
 
 Równanie: '==';
 
-NotEqual: '!=';
+NieRówne: '!=';
 
-LessEqual: '<=';
+MniejRówneNiż: '<=';
 
-GreaterEqual: '>=';
+WięcejRówneNiż: '>=';
 
 Oraz: '&&' | 'Oraz';
 
