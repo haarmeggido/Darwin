@@ -83,7 +83,7 @@ if (x == 1) {
 ## Autorzy
 
 - Miłosz Góralczyk (goralczykm@student.agh.edu.pl)
-- Robert Barcik (barcikr@student.agh.edu.pl)
+- Robert Barcik (rbarcik@student.agh.edu.pl)
 
 ## Licencja
 
