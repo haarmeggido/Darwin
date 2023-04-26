@@ -34,7 +34,7 @@ zagnieżdżonySpecyfikatorImienia:
 	) Dwudwukropek;
 
 wyrażenieLambda:
-	wyprowadzaczLambda deklaracjaLambda? compoundStatement;
+	wyprowadzaczLambda deklaracjaLambda? wyrażenieZłożone;
 
 wyprowadzaczLambda: LewyNawiasKwadratowy zdobyczLambda? PrawyNawiasKwadratowy;
 
@@ -54,15 +54,15 @@ inicjowaniePrzechwytywania: Oraz? Identifier initializer;
 
 deklaracjaLambda:
 	LewaParenteza parameterDeclarationClause? PrawaParenteza Zmienny? exceptionSpecification?
-		attributeSpecifierSeq? trailingReturnType?;
+		atrybutSpecyfikatorSekw? trailingReturnType?;
 
 przyrostkoweWyrażenie:
 	pierwotneWyrazenie
-	| przyrostkoweWyrażenie LewyNawiasKwadratowy (wyrażenie | bracedInitList) PrawyNawiasKwadratowy
+	| przyrostkoweWyrażenie LewyNawiasKwadratowy (wyrażenie | klamraListaInicj) PrawyNawiasKwadratowy
 	| przyrostkoweWyrażenie LewaParenteza listaWyrażeń? PrawaParenteza
 	| (simpleTypeSpecifier | typeNameSpecifier) (
 		LewaParenteza listaWyrażeń? PrawaParenteza
-		| bracedInitList
+		| klamraListaInicj
 	)
 	| przyrostkoweWyrażenie (Kropka | Strzałka) (
 		Szablon? wyrażenieId
@@ -118,12 +118,12 @@ nowyDeklarator:
 	| nowyDeklaratorBezWskaźnika;
 
 nowyDeklaratorBezWskaźnika:
-	LewyNawiasKwadratowy wyrażenie PrawyNawiasKwadratowy attributeSpecifierSeq?
-	| nowyDeklaratorBezWskaźnika LewyNawiasKwadratowy wyrażenieStałe PrawyNawiasKwadratowy attributeSpecifierSeq?;
+	LewyNawiasKwadratowy wyrażenie PrawyNawiasKwadratowy atrybutSpecyfikatorSekw?
+	| nowyDeklaratorBezWskaźnika LewyNawiasKwadratowy wyrażenieStałe PrawyNawiasKwadratowy atrybutSpecyfikatorSekw?;
 
 nowyInicjator:
 	LewaParenteza listaWyrażeń? PrawaParenteza
-	| bracedInitList;
+	| klamraListaInicj;
 
 usuńWyrażenie:
 	Dwudwukropek? Usuń (LewyNawiasKwadratowy PrawyNawiasKwadratowy)? wyrażenieRzutujące;
@@ -154,12 +154,12 @@ operatorZmiany: WięcejNiż WięcejNiż | MniejNiż MniejNiż;
 
 względneWyrażenie:
 	wyrażenieZmiany (
-		(MniejNiż | WięcejNiż | LessEqual | GreaterEqual) wyrażenieZmiany
+		(MniejNiż | WięcejNiż | MniejRówneNiż | WięcejRówneNiż) wyrażenieZmiany
 	)*;
 
 wyrażenieRówności:
 	względneWyrażenie (
-		(Równanie | NotEqual) względneWyrażenie
+		(Równanie | NieRówne) względneWyrażenie
 	)*;
 
 wyrażenieOraz: wyrażenieRówności (Oraz wyrażenieRówności)*;
@@ -182,8 +182,8 @@ wyrażenieWarunkowe:
 
 wyrażeniePrzypisania:
 	wyrażenieWarunkowe
-	| logiczneWyrażenieLub operatorPrzypisania initializerClause
-	| throwExpression;
+	| logiczneWyrażenieLub operatorPrzypisania inicjującaKlauzula
+	| rzućWyrażenie;
 
 operatorPrzypisania:
 	Przypisanie
@@ -204,65 +204,65 @@ wyrażenieStałe: wyrażenieWarunkowe;
 /*Statements*/
 
 deklaracja:
-	labeledStatement
-	| declarationStatement
-	| attributeSpecifierSeq? (
-		expressionStatement
-		| compoundStatement
-		| selectionStatement
-		| iterationStatement
-		| jumpStatement
-		| tryBlock
+	wyrażenieOznakowane
+	| wyrażenieDeklaracji
+	| atrybutSpecyfikatorSekw? (
+		wyrażenieFormuły
+		| wyrażenieZłożone
+		| wyrażenieWyboru
+		| wyrażenieIteracji
+		| wyrażenieSkoku
+		| spróbujBlok
 	);
 
-labeledStatement:
-	attributeSpecifierSeq? (
+wyrażenieOznakowane:
+	atrybutSpecyfikatorSekw? (
 		Identifier
 		| Przypadek wyrażenieStałe
 		| Domyślny
 	) Dwukropek deklaracja;
 
-expressionStatement: wyrażenie? Średnik;
+wyrażenieFormuły: wyrażenie? Średnik;
 
-compoundStatement: LewaKlamra statementSeq? PrawaKlamra;
+wyrażenieZłożone: LewaKlamra statementSeq? PrawaKlamra;
 
 statementSeq: deklaracja+;
 
-selectionStatement:
-	W_przypadku_gdy LewaParenteza condition PrawaParenteza deklaracja (Jeśli_nie deklaracja)?
-	| Przełącz LewaParenteza condition PrawaParenteza deklaracja;
+wyrażenieWyboru:
+	W_przypadku_gdy LewaParenteza warunek PrawaParenteza deklaracja (Jeśli_nie deklaracja)?
+	| Przełącz LewaParenteza warunek PrawaParenteza deklaracja;
 
-condition:
+warunek:
 	wyrażenie
-	| attributeSpecifierSeq? declSpecifierSeq declarator (
-		Przypisanie initializerClause
-		| bracedInitList
+	| atrybutSpecyfikatorSekw? declSpecifierSeq declarator (
+		Przypisanie inicjującaKlauzula
+		| klamraListaInicj
 	);
 
-iterationStatement:
-	Dopóty LewaParenteza condition PrawaParenteza deklaracja
+wyrażenieIteracji:
+	Dopóty LewaParenteza warunek PrawaParenteza deklaracja
 	| Rób deklaracja Dopóty LewaParenteza wyrażenie PrawaParenteza Średnik
 	| Dla LewaParenteza (
-		forInitStatement condition? Średnik wyrażenie?
+		forInitStatement warunek? Średnik wyrażenie?
 		| forRangeDeclaration Dwukropek forRangeInitializer
 	) PrawaParenteza deklaracja;
 
-forInitStatement: expressionStatement | simpleDeclaration;
+forInitStatement: wyrażenieFormuły | simpleDeclaration;
 
 forRangeDeclaration:
-	attributeSpecifierSeq? declSpecifierSeq declarator;
+	atrybutSpecyfikatorSekw? declSpecifierSeq declarator;
 
-forRangeInitializer: wyrażenie | bracedInitList;
+forRangeInitializer: wyrażenie | klamraListaInicj;
 
-jumpStatement:
+wyrażenieSkoku:
 	(
 		Rozłam
 		| Kontynuuj
-		| Zwróć (wyrażenie | bracedInitList)?
+		| Zwróć (wyrażenie | klamraListaInicj)?
 		| IdźDo Identifier
 	) Średnik;
 
-declarationStatement: blockDeclaration;
+wyrażenieDeklaracji: blockDeclaration;
 /*Declarations*/
 
 declarationseq: declaration+;
@@ -288,18 +288,18 @@ blockDeclaration:
 	| aliasDeclaration
 	| opaqueEnumDeclaration;
 aliasDeclaration:
-	Używając Identifier attributeSpecifierSeq? Przypisanie theTypeId Średnik;
+	Używając Identifier atrybutSpecyfikatorSekw? Przypisanie theTypeId Średnik;
 
 simpleDeclaration:
 	declSpecifierSeq? initDeclaratorList? Średnik
-	| attributeSpecifierSeq declSpecifierSeq? initDeclaratorList Średnik;
+	| atrybutSpecyfikatorSekw declSpecifierSeq? initDeclaratorList Średnik;
 
 staticAssertDeclaration:
 	Statyczne_zapewnienie LewaParenteza wyrażenieStałe Przecinek LiterałŁańcuchowy PrawaParenteza Średnik;
 
 emptyDeclaration: Średnik;
 
-attributeDeclaration: attributeSpecifierSeq Średnik;
+attributeDeclaration: atrybutSpecyfikatorSekw Średnik;
 
 declSpecifier:
 	storageKlasaSpecifier
@@ -309,7 +309,7 @@ declSpecifier:
 	| DefiniowanieTypu
 	| Constexpr;
 	
-declSpecifierSeq: declSpecifier+? attributeSpecifierSeq?;
+declSpecifierSeq: declSpecifier+? atrybutSpecyfikatorSekw?;
 
 storageKlasaSpecifier:
 	DoWykazu
@@ -333,10 +333,10 @@ trailingTypeSpecifier:
 	| typeNameSpecifier
 	| cvQualifier;
 
-typeSpecifierSeq: typeSpecifier+ attributeSpecifierSeq?;
+typeSpecifierSeq: typeSpecifier+ atrybutSpecyfikatorSekw?;
 
 trailingTypeSpecifierSeq:
-	trailingTypeSpecifier+ attributeSpecifierSeq?;
+	trailingTypeSpecifier+ atrybutSpecyfikatorSekw?;
 
 simpleTypeLengthModifier:
 	Krótka
@@ -374,7 +374,7 @@ decltypeSpecifier:
 
 elaboratedTypeSpecifier:
 	classKey (
-		attributeSpecifierSeq? zagnieżdżonySpecyfikatorImienia? Identifier
+		atrybutSpecyfikatorSekw? zagnieżdżonySpecyfikatorImienia? Identifier
 		| simpleTemplateId
 		| zagnieżdżonySpecyfikatorImienia Szablon? simpleTemplateId
 	)
@@ -386,12 +386,12 @@ enumSpecifier:
 	enumHead LewaKlamra (enumeratorList Przecinek?)? PrawaKlamra;
 
 enumHead:
-	enumkey attributeSpecifierSeq? (
+	enumkey atrybutSpecyfikatorSekw? (
 		zagnieżdżonySpecyfikatorImienia? Identifier
 	)? enumbase?;
 
 opaqueEnumDeclaration:
-	enumkey attributeSpecifierSeq? Identifier enumbase? Średnik;
+	enumkey atrybutSpecyfikatorSekw? Identifier enumbase? Średnik;
 
 enumkey: Wyliczenie (Klasa | Struktura)?;
 
@@ -423,7 +423,7 @@ useDeclaration:
 	Używając ((WytypujNazwę? zagnieżdżonySpecyfikatorImienia) | Dwudwukropek) niewykwalifikowaneId Średnik;
 
 używającDirective:
-	attributeSpecifierSeq? Używając Przestrzeńnazw zagnieżdżonySpecyfikatorImienia? namespaceName Średnik;
+	atrybutSpecyfikatorSekw? Używając Przestrzeńnazw zagnieżdżonySpecyfikatorImienia? namespaceName Średnik;
 
 asmDefinition: Asm LewaParenteza LiterałŁańcuchowy PrawaParenteza Średnik;
 
@@ -433,7 +433,7 @@ linkageSpecification:
 		| declaration
 	);
 
-attributeSpecifierSeq: attributeSpecifier+;
+atrybutSpecyfikatorSekw: attributeSpecifier+;
 
 attributeSpecifier:
 	LewyNawiasKwadratowy LewyNawiasKwadratowy attributeList? PrawyNawiasKwadratowy PrawyNawiasKwadratowy
@@ -477,23 +477,23 @@ declarator:
 pointerDeclarator: (pointerOperator Stała?)* noPointerDeclarator;
 
 noPointerDeclarator:
-	declaratorid attributeSpecifierSeq?
+	declaratorid atrybutSpecyfikatorSekw?
 	| noPointerDeclarator (
 		parametersAndQualifiers
-		| LewyNawiasKwadratowy wyrażenieStałe? PrawyNawiasKwadratowy attributeSpecifierSeq?
+		| LewyNawiasKwadratowy wyrażenieStałe? PrawyNawiasKwadratowy atrybutSpecyfikatorSekw?
 	)
 	| LewaParenteza pointerDeclarator PrawaParenteza;
 
 parametersAndQualifiers:
 	LewaParenteza parameterDeclarationClause? PrawaParenteza cvqualifierseq? refqualifier?
-		exceptionSpecification? attributeSpecifierSeq?;
+		exceptionSpecification? atrybutSpecyfikatorSekw?;
 
 trailingReturnType:
 	Strzałka trailingTypeSpecifierSeq abstractDeclarator?;
 
 pointerOperator:
-	(Oraz | Oraz) attributeSpecifierSeq?
-	| zagnieżdżonySpecyfikatorImienia? Mnożenie attributeSpecifierSeq? cvqualifierseq?;
+	(Oraz | Oraz) atrybutSpecyfikatorSekw?
+	| zagnieżdżonySpecyfikatorImienia? Mnożenie atrybutSpecyfikatorSekw? cvqualifierseq?;
 
 cvqualifierseq: cvQualifier+;
 
@@ -518,10 +518,10 @@ noPointerAbstractDeclarator:
 	noPointerAbstractDeclarator (
 		parametersAndQualifiers
 		| noPointerAbstractDeclarator LewyNawiasKwadratowy wyrażenieStałe? PrawyNawiasKwadratowy
-			attributeSpecifierSeq?
+			atrybutSpecyfikatorSekw?
 	)
 	| parametersAndQualifiers
-	| LewyNawiasKwadratowy wyrażenieStałe? PrawyNawiasKwadratowy attributeSpecifierSeq?
+	| LewyNawiasKwadratowy wyrażenieStałe? PrawyNawiasKwadratowy atrybutSpecyfikatorSekw?
 	| LewaParenteza pointerAbstractDeclarator PrawaParenteza;
 
 abstractPackDeclarator:
@@ -530,7 +530,7 @@ abstractPackDeclarator:
 noPointerAbstractPackDeclarator:
 	noPointerAbstractPackDeclarator (
 		parametersAndQualifiers
-		| LewyNawiasKwadratowy wyrażenieStałe? PrawyNawiasKwadratowy attributeSpecifierSeq?
+		| LewyNawiasKwadratowy wyrażenieStałe? PrawyNawiasKwadratowy atrybutSpecyfikatorSekw?
 	)
 	| Elipsa;
 
@@ -541,17 +541,17 @@ parameterDeclarationList:
 	parameterDeclaration (Przecinek parameterDeclaration)*;
 
 parameterDeclaration:
-	attributeSpecifierSeq? declSpecifierSeq (
+	atrybutSpecyfikatorSekw? declSpecifierSeq (
 		(declarator | abstractDeclarator?) (
-			Przypisanie initializerClause
+			Przypisanie inicjującaKlauzula
 		)?
 	);
 
 functionDefinition:
-	attributeSpecifierSeq? declSpecifierSeq? declarator virtualSpecifierSeq? functionBody;
+	atrybutSpecyfikatorSekw? declSpecifierSeq? declarator virtualSpecifierSeq? functionBody;
 
 functionBody:
-	conStrukturaorInitializer? compoundStatement
+	conStrukturaorInitializer? wyrażenieZłożone
 	| functionTryBlock
 	| Przypisanie (Domyślny | Usuń) Średnik;
 
@@ -560,17 +560,17 @@ initializer:
 	| LewaParenteza listaWyrażeń PrawaParenteza;
 
 braceOrEqualInitializer:
-	Przypisanie initializerClause
-	| bracedInitList;
+	Przypisanie inicjującaKlauzula
+	| klamraListaInicj;
 
-initializerClause: wyrażeniePrzypisania | bracedInitList;
+inicjującaKlauzula: wyrażeniePrzypisania | klamraListaInicj;
 
 initializerList:
-	initializerClause Elipsa? (
-		Przecinek initializerClause Elipsa?
+	inicjującaKlauzula Elipsa? (
+		Przecinek inicjującaKlauzula Elipsa?
 	)*;
 
-bracedInitList: LewaKlamra (initializerList Przecinek?)? PrawaKlamra;
+klamraListaInicj: LewaKlamra (initializerList Przecinek?)? PrawaKlamra;
 /*Klasaes*/
 
 className: Identifier | simpleTemplateId;
@@ -579,10 +579,10 @@ classSpecifier:
 	classHead LewaKlamra memberSpecification? PrawaKlamra;
 
 classHead:
-	classKey attributeSpecifierSeq? (
+	classKey atrybutSpecyfikatorSekw? (
 		classHeadName classVirtSpecifier?
 	)? baseClause?
-	| Jedność attributeSpecifierSeq? (
+	| Jedność atrybutSpecyfikatorSekw? (
 		classHeadName classVirtSpecifier?
 	)?;
 
@@ -596,7 +596,7 @@ memberSpecification:
 	(memberdeclaration | accessSpecifier Dwukropek)+;
 
 memberdeclaration:
-	attributeSpecifierSeq? declSpecifierSeq? memberDeclaratorList? Średnik
+	atrybutSpecyfikatorSekw? declSpecifierSeq? memberDeclaratorList? Średnik
 	| functionDefinition
 	| staticAssertDeclaration
 	| templateDeclaration
@@ -611,7 +611,7 @@ memberDeclarator:
 		virtualSpecifierSeq? pureSpecifier?
 		| braceOrEqualInitializer?
 	)
-	| Identifier? attributeSpecifierSeq? Dwukropek wyrażenieStałe;
+	| Identifier? atrybutSpecyfikatorSekw? Dwukropek wyrażenieStałe;
 
 virtualSpecifierSeq: virtualSpecifier+;
 
@@ -631,7 +631,7 @@ baseSpecifierList:
 	baseSpecifier Elipsa? (Przecinek baseSpecifier Elipsa?)*;
 
 baseSpecifier:
-	attributeSpecifierSeq? (
+	atrybutSpecyfikatorSekw? (
 		baseTypeSpecifier
 		| Wirtualna accessSpecifier? baseTypeSpecifier
 		| accessSpecifier Wirtualna? baseTypeSpecifier
@@ -660,7 +660,7 @@ memInitializerList:
 memInitializer:
 	meminitializerid (
 		LewaParenteza listaWyrażeń? PrawaParenteza
-		| bracedInitList
+		| klamraListaInicj
 	);
 
 meminitializerid: classOrDeclType | Identifier;
@@ -714,24 +714,24 @@ explicitInstantiation: Zewnętrzny? Szablon declaration;
 explicitSpecialization: Szablon MniejNiż WięcejNiż declaration;
 /*Exception handling*/
 
-tryBlock: Spróbuj compoundStatement handlerSeq;
+spróbujBlok: Spróbuj wyrażenieZłożone handlerSeq;
 
 functionTryBlock:
-	Spróbuj conStrukturaorInitializer? compoundStatement handlerSeq;
+	Spróbuj conStrukturaorInitializer? wyrażenieZłożone handlerSeq;
 
 handlerSeq: handler+;
 
 handler:
-	Złap LewaParenteza exceptionDeclaration PrawaParenteza compoundStatement;
+	Złap LewaParenteza exceptionDeclaration PrawaParenteza wyrażenieZłożone;
 
 exceptionDeclaration:
-	attributeSpecifierSeq? typeSpecifierSeq (
+	atrybutSpecyfikatorSekw? typeSpecifierSeq (
 		declarator
 		| abstractDeclarator
 	)?
 	| Elipsa;
 
-throwExpression: Wyrzuć wyrażeniePrzypisania?;
+rzućWyrażenie: Wyrzuć wyrażeniePrzypisania?;
 
 exceptionSpecification:
 	dynamicExceptionSpecification
@@ -764,7 +764,7 @@ theOperator:
 	| Przypisanie
 	| WięcejNiż
 	| MniejNiż
-	| GreaterEqual
+	| WięcejRówneNiż
 	| DodaniePrzypisanie
 	| OdjęciePrzypisanie
 	| PomnożeniePrzypisanie
@@ -772,8 +772,8 @@ theOperator:
 	| MniejNiż MniejNiż
 	| WięcejNiż WięcejNiż
 	| Równanie
-	| NotEqual
-	| LessEqual
+	| NieRówne
+	| MniejRówneNiż
 	| Oraz
 	| Lub
 	| Inkrementacja
