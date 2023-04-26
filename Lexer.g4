@@ -287,7 +287,7 @@ Elipsa: '...';
 fragment Hexquad:
 	HEXADECIMALDIGIT HEXADECIMALDIGIT HEXADECIMALDIGIT HEXADECIMALDIGIT;
 
-fragment Universalcharactername:
+fragment Uniwersalnanazwaznaku:
 	'\\u' Hexquad
 	| '\\U' Hexquad Hexquad;
 
@@ -297,7 +297,7 @@ Identyfikator:
 	 */
 	Identyfikatorniecyfrowy (Identyfikatorniecyfrowy | DIGIT)*;
 
-fragment Identyfikatorniecyfrowy: NONDIGIT | Universalcharactername;
+fragment Identyfikatorniecyfrowy: NONDIGIT | Uniwersalnanazwaznaku;
 
 fragment NONDIGIT: [a-zA-Z_];
 
@@ -336,7 +336,7 @@ fragment Longlongsuffix: 'll' | 'LL';
 fragment Cchar:
 	~ ['\\\r\n]
 	| Escapesequence
-	| Universalcharactername;
+	| Uniwersalnanazwaznaku;
 fragment Escapesequence:
 	Simpleescapesequence
 	| Octalescapesequence
@@ -381,7 +381,7 @@ fragment Encodingprefix: 'u8' | 'u' | 'U' | 'L';
 fragment Schar:
 	~ ["\\\r\n]
 	| Escapesequence
-	| Universalcharactername;
+	| Uniwersalnanazwaznaku;
 fragment Rawstring: 'R"' (( '\\' ["()] )|~[\r\n (])*? '(' ~[)]*? ')'  (( '\\' ["()]) | ~[\r\n "])*? '"';
 UserDefinedIntegerLiteral:
 	DecimalLiteral Udsuffix

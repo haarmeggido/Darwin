@@ -21,8 +21,8 @@ niewykwalifikowaneId:
 	| operatorFunctionId
 	| conversionFunctionId
 	| literalOperatorId
-	| Tylda (className | dekltypSpecyfikator)
-	| templateId;
+	| Tylda (klasaNazwa | dekltypSpecyfikator)
+	| szablonId;
 
 wykwalifikowane: zagnieżdżonySpecyfikatorImienia Szablon? niewykwalifikowaneId;
 
@@ -30,7 +30,7 @@ zagnieżdżonySpecyfikatorImienia:
 	(theTypeName | namespaceName | dekltypSpecyfikator)? Dwudwukropek
 	| zagnieżdżonySpecyfikatorImienia (
 		Identyfikator
-		| Szablon? simpleTemplateId
+		| Szablon? prostySzablonId
 	) Dwudwukropek;
 
 wyrażenieLambda:
@@ -86,7 +86,7 @@ listaWyrażeń: initializerList;
 
 nazwaPseudoDestruktora:
 	zagnieżdżonySpecyfikatorImienia? (theTypeName Dwudwukropek)? Tylda theTypeName
-	| zagnieżdżonySpecyfikatorImienia Szablon simpleTemplateId Dwudwukropek Tylda theTypeName
+	| zagnieżdżonySpecyfikatorImienia Szablon prostySzablonId Dwudwukropek Tylda theTypeName
 	| Tylda dekltypSpecyfikator;
 
 jednoargumentoweWyrażenie:
@@ -348,7 +348,7 @@ prostyTypPrzypisanieModyfikator:
 
 simpleTypeSpecifier:
 	zagnieżdżonySpecyfikatorImienia? theTypeName
-	| zagnieżdżonySpecyfikatorImienia Szablon simpleTemplateId
+	| zagnieżdżonySpecyfikatorImienia Szablon prostySzablonId
 	| prostyTypPrzypisanieModyfikator
 	| prostyTypPrzypisanieModyfikator? prostyTypDługośćModyfikator+
 	| prostyTypPrzypisanieModyfikator? Znak
@@ -364,10 +364,10 @@ simpleTypeSpecifier:
 	| dekltypSpecyfikator;
 
 theTypeName:
-	className
+	klasaNazwa
 	| enumName
 	| typedefName
-	| simpleTemplateId;
+	| prostySzablonId;
 
 dekltypSpecyfikator:
 	Dekltyp LewaParenteza (wyrażenie | Auto) PrawaParenteza;
@@ -375,8 +375,8 @@ dekltypSpecyfikator:
 elaboratedTypeSpecifier:
 	classKey (
 		atrybutSpecyfikatorSekw? zagnieżdżonySpecyfikatorImienia? Identyfikator
-		| simpleTemplateId
-		| zagnieżdżonySpecyfikatorImienia Szablon? simpleTemplateId
+		| prostySzablonId
+		| zagnieżdżonySpecyfikatorImienia Szablon? prostySzablonId
 	)
 	| Wyliczenie zagnieżdżonySpecyfikatorImienia? Identyfikator;
 
@@ -573,7 +573,7 @@ initializerList:
 klamraListaInicj: LewaKlamra (initializerList Przecinek?)? PrawaKlamra;
 /*Klasaes*/
 
-className: Identyfikator | simpleTemplateId;
+klasaNazwa: Identyfikator | prostySzablonId;
 
 classSpecifier:
 	classHead LewaKlamra memberSpecification? PrawaKlamra;
@@ -586,7 +586,7 @@ classHead:
 		classHeadName classVirtSpecifier?
 	)?;
 
-classHeadName: zagnieżdżonySpecyfikatorImienia? className;
+classHeadName: zagnieżdżonySpecyfikatorImienia? klasaNazwa;
 
 classVirtSpecifier: Ostateczny;
 
@@ -638,7 +638,7 @@ baseSpecifier:
 	);
 
 classOrDeclType:
-	zagnieżdżonySpecyfikatorImienia? className
+	zagnieżdżonySpecyfikatorImienia? klasaNazwa
 	| dekltypSpecyfikator;
 
 baseTypeSpecifier: classOrDeclType;
@@ -689,24 +689,24 @@ typeParameter:
 		| WytypujNazwę
 	) ((Elipsa? Identyfikator?) | (Identyfikator? Przypisanie theTypeId));
 
-simpleTemplateId:
-	templateName MniejNiż templateArgumentList? WięcejNiż;
+prostySzablonId:
+	templateName MniejNiż szablonArgumentLista? WięcejNiż;
 
-templateId:
-	simpleTemplateId
-	| (operatorFunctionId | literalOperatorId) MniejNiż templateArgumentList? WięcejNiż;
+szablonId:
+	prostySzablonId
+	| (operatorFunctionId | literalOperatorId) MniejNiż szablonArgumentLista? WięcejNiż;
 
 templateName: Identyfikator;
 
-templateArgumentList:
-	templateArgument Elipsa? (Przecinek templateArgument Elipsa?)*;
+szablonArgumentLista:
+	szablonArgument Elipsa? (Przecinek szablonArgument Elipsa?)*;
 
-templateArgument: theTypeId | wyrażenieStałe | wyrażenieId;
+szablonArgument: theTypeId | wyrażenieStałe | wyrażenieId;
 
 typeNameSpecifier:
 	WytypujNazwę zagnieżdżonySpecyfikatorImienia (
 		Identyfikator
-		| Szablon? simpleTemplateId
+		| Szablon? prostySzablonId
 	);
 
 jawnaInstantacja: Zewnętrzny? Szablon declaration;
