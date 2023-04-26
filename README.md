@@ -56,11 +56,11 @@ gdzie `input.drw` to plik wejściowy z kodem w języku Darwin, a `output.cpp` to
 Poniżej znajduje się przykładowy blok kodu napisany w języku Darwin:
 
 ```
-w_przypadku_gdy (x jest równe 1):
+w_przypadku_gdy (x == 1):
   wypisz "x jest równe 1"
-jeśli_nie w_przypadku_gdy (x jest równe 2):
+jeśli_nie w_przypadku_gdy (x == 2):
   wypisz "x jest równe 2"
-jeśli_nie w_przypadku_gdy (x jest równe 3):
+jeśli_nie w_przypadku_gdy (x == 3):
   wypisz "x jest równe 3"
 jeśli_nie:
   wypisz "x jest inne"
