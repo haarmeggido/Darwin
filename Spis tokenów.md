@@ -30,7 +30,7 @@ Separatory:
    (, ) - nawiasy okrągłe używane do grupowania wyrażeń i wywoływania funkcji.
    {, } - nawiasy klamrowe używane do definiowania bloków kodu.
    [, ] - nawiasy kwadratowe używane przy indeksowaniu tablic.
-   # - używane przy dyrektywach preprocesora.
+   \# - używane przy dyrektywach preprocesora.
 
 Komentarze:
    // - komentarz jednolinijkowy.
