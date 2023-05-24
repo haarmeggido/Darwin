@@ -119,17 +119,17 @@ Tokeny dla operatorów porównania:
    == - operator równości.
    != - operator nierówności.
    < - operator mniejszości.
-   > - operator większości.
-   <= - operator mniejszy lub równy.
-   >= - operator większy lub równy.
+   \> - operator większości.
+   \<= - operator mniejszy lub równy.
+   \>= - operator większy lub równy.
 
 Tokeny dla operatorów inkrementacji i dekrementacji:
    ++ - operator inkrementacji.
    -- - operator dekrementacji.
 
 Tokeny dla operatorów strumieniowych:
-   >> - operator strumienia wejściowego.
-   << - operator strumienia wyjściowego.
+   \>> - operator strumienia wejściowego.
+   \<< - operator strumienia wyjściowego.
 
 Tokeny dla operatorów wywołania:
 
