@@ -1,7 +1,6 @@
 ## Lista tokenów
 
-Przepraszam za nieprecyzyjność. Oto poprawiona tabela w formacie Markdown, w której każdy element kolumny "Znaczenie" ma swój własny wiersz w kolumnie "Token", z dokładnym opisem reprezentowanego znaczenia:
-
+<!---
 | Token           | Znaczenie                                             |
 |-----------------|-------------------------------------------------------|
 | Identifikatory  | Zmienne, funkcje, klasy, itp.                          |
@@ -38,36 +37,27 @@ Przepraszam za nieprecyzyjność. Oto poprawiona tabela w formacie Markdown, w k
 | Operator: typeid | Operator zwracający informacje o typie                 |
 | Inne tokeny     | Pozostałe tokeny, których znaczenie zależy od kontekstu |
 
-Teraz tabela zawiera spis tokenów języka C++ wraz z odpowiadającymi im dokładnymi znaczeniami.
+
+
+-->
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-<!---
 
 Identifikatory:
-   Zmienne, funkcje, klasy, itp.: myVariable, calculateSum, MyClass, itp.
+   Zmienne, funkcje, klasy, itp.: myVariable, calculateSum, MyClass
 
 Słowa kluczowe:
-   auto, break, case, catch, const, continue, default, do, else, enum, explicit, extern, false, for, goto, if, inline, namespace, new, nullptr, operator, private, protected, public, return, sizeof, static, struct, switch, template, this, throw, true, try, typedef, typeid, typename, union, using, virtual, void, volatile, while, itp.
+   auto, break, case, catch, const, continue, default, do, else, enum, explicit, extern, false, for, goto, if, inline, namespace, new, nullptr, operator, private, protected, public, return, sizeof, static, struct, switch, template, this, throw, true, try, typedef, typeid, typename, union, using, virtual, void, volatile, while
 
 Literały:
    Liczby całkowite: 123, 0, -42, itp.
    Liczby zmiennoprzecinkowe: 3.14, 0.5, -2.7, itp.
    Łańcuchy znaków: "Hello", "World", "C++", itp.
-   Znaki: 'a', 'b', 'c', itp.
+   Znaki: 'a', 'b', 'c'
 
 Operatorzy:
    Arytmetyczne: +, -, *, /, %, itp.
@@ -94,7 +84,7 @@ Komentarze:
    /* */ - komentarz wielolinijkowy.
 
 Dyrektywy preprocesora:
-   #include, #define, #ifdef, #ifndef, #endif, #if, #elif, #else, #pragma, itp.
+   #include, #define, #endif, #if, #elif, #else
 
 
 Tokeny dla typów danych:
@@ -112,19 +102,6 @@ Tokeny dla operatorów przypisania:
    *= - operator przypisania z mnożeniem.
    /= - operator przypisania z dzieleniem.
    %= - operator przypisania z resztą z dzielenia.
-   \<<= - operator przypisania z przesunięciem bitowym w lewo.
-   \>>= - operator przypisania z przesunięciem bitowym w prawo.
-   &= - operator przypisania z operacją bitowego AND.
-   |= - operator przypisania z operacją bitowego OR.
-   ^= - operator przypisania z operacją bitowego XOR.
-
-Tokeny dla operatorów bitowych:
-   & - operator bitowego AND.
-   | - operator bitowego OR.
-   ^ - operator bitowego XOR.
-   ~ - operator bitowego negacji.
-   \<< - operator przesunięcia bitowego w lewo.
-   \>> - operator przesunięcia bitowego w prawo.
 
 Tokeny dla operatorów logicznych:
    && - operator logicznego AND.
@@ -158,8 +135,6 @@ Tokeny dla operatorów wywołania:
 
 () - operator wywołania funkcji.
 [] - operator wywołania indeksowego dla tablic i kontenerów.
-
--->
 
 Tokeny dla operatorów innego zastosowania:
 
