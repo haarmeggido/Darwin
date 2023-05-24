@@ -1,5 +1,62 @@
 ## Lista tokenów
 
+Przepraszam za nieprecyzyjność. Oto poprawiona tabela w formacie Markdown, w której każdy element kolumny "Znaczenie" ma swój własny wiersz w kolumnie "Token", z dokładnym opisem reprezentowanego znaczenia:
+
+| Token           | Znaczenie                                             |
+|-----------------|-------------------------------------------------------|
+| Identifikatory  | Zmienne, funkcje, klasy, itp.                          |
+| Słowa kluczowe  | Auto, break, case, catch, const, continue, itp.        |
+| Literały        | Liczby całkowite, liczby zmiennoprzecinkowe, itp.      |
+| Operator: &&    | Operator logicznego AND                                |
+| Operator: \|\|  | Operator logicznego OR                                 |
+| Operator: !     | Operator logicznego NOT                                |
+| Operator: ==    | Operator równości                                     |
+| Operator: !=    | Operator nierówności                                  |
+| Operator: <     | Operator mniejszości                                  |
+| Operator: >     | Operator większości                                   |
+| Operator: <=    | Operator mniejszy lub równy                           |
+| Operator: >=    | Operator większy lub równy                            |
+| Operator: ++    | Operator inkrementacji                                |
+| Operator: --    | Operator dekrementacji                                |
+| Operator: <<    | Operator strumienia wyjściowego                        |
+| Operator: >>    | Operator strumienia wejściowego                        |
+| Operator: ()    | Operator wywołania funkcji                            |
+| Operator: []    | Operator wywołania indeksowego dla tablic i kontenerów |
+| Operator: .     | Operator kropki używany do dostępu do składowych obiektu |
+| Operator: ->    | Operator strzałki używany do dostępu do składowych wskaźnika |
+| Operator: +=    | Operator przypisania z dodawaniem                      |
+| Operator: -=    | Operator przypisania z odejmowaniem                    |
+| Operator: *=    | Operator przypisania z mnożeniem                       |
+| Operator: /=    | Operator przypisania z dzieleniem                      |
+| Operator: %=    | Operator przypisania z resztą z dzielenia              |
+| Operator: <<=   | Operator przypisania z przesunięciem bitowym w lewo     |
+| Operator: >>=   | Operator przypisania z przesunięciem bitowym w prawo    |
+| Operator: &=    | Operator przypisania z operacją bitowego AND           |
+| Operator: \|=   | Operator przypisania z operacją bitowego OR            |
+| Operator: ^=    | Operator przypisania z operacją bitowego XOR           |
+| Operator: sizeof | Operator zwracający rozmiar typu lub obiektu           |
+| Operator: typeid | Operator zwracający informacje o typie                 |
+| Inne tokeny     | Pozostałe tokeny, których znaczenie zależy od kontekstu |
+
+Teraz tabela zawiera spis tokenów języka C++ wraz z odpowiadającymi im dokładnymi znaczeniami.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---
+
 Identifikatory:
    Zmienne, funkcje, klasy, itp.: myVariable, calculateSum, MyClass, itp.
 
@@ -101,6 +158,8 @@ Tokeny dla operatorów wywołania:
 
 () - operator wywołania funkcji.
 [] - operator wywołania indeksowego dla tablic i kontenerów.
+
+-->
 
 Tokeny dla operatorów innego zastosowania:
 
