@@ -55,8 +55,8 @@ Tokeny dla operatorów przypisania:
    *= - operator przypisania z mnożeniem.
    /= - operator przypisania z dzieleniem.
    %= - operator przypisania z resztą z dzielenia.
-   <<= - operator przypisania z przesunięciem bitowym w lewo.
-   >>= - operator przypisania z przesunięciem bitowym w prawo.
+   \<<= - operator przypisania z przesunięciem bitowym w lewo.
+   \>>= - operator przypisania z przesunięciem bitowym w prawo.
    &= - operator przypisania z operacją bitowego AND.
    |= - operator przypisania z operacją bitowego OR.
    ^= - operator przypisania z operacją bitowego XOR.
@@ -66,8 +66,8 @@ Tokeny dla operatorów bitowych:
    | - operator bitowego OR.
    ^ - operator bitowego XOR.
    ~ - operator bitowego negacji.
-   << - operator przesunięcia bitowego w lewo.
-   >> - operator przesunięcia bitowego w prawo.
+   \<< - operator przesunięcia bitowego w lewo.
+   \>> - operator przesunięcia bitowego w prawo.
 
 Tokeny dla operatorów logicznych:
    && - operator logicznego AND.
