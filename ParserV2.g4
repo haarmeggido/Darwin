@@ -3,7 +3,7 @@ options {
 	tokenVocab = Lexer;
 }
 
-symbolStartowy: dyrektywyPreprocesora FunkcjaGłówna LewaKlamra kod PrawaKlamra;
+symbolStartowy: dyrektywyPreprocesora FunkcjaGlowna LewaKlamra kod PrawaKlamra;
 
 dyrektywyPreprocesora: include*;
 
