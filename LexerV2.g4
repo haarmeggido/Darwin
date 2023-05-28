@@ -36,7 +36,7 @@ ZnakWiekszosciLubRownosci: '>=';
 ZnakNierownosci: '!=';
 
 Include: '#include';
-FunkcjaGłówna:'int glowna()';
+FunkcjaGlowna:'int glowna()';
 
 Przypisanie:'=';
 Zwiekszenie:'+=';
