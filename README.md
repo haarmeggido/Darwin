@@ -71,69 +71,66 @@ f2+=f1;
 ```         
 
 ```
-	1. symbolStartowy: include Std NowaLinia FunkcjaGlowna LewaKlamra NowaLinia kod PrawaKlamra
-	2. include: Include ZnakMniejszosci CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY* ZnakWiekszosci NowaLinia
-	3. kod: polecenie polecenie for
-	4. polecenie: typZmiennej Spacja nazwaZmiennej Przypisanie operacja Srednik NowaLinia
-	5. typZmiennej: TypCalkowity
-	6. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
-	7. operacja: zmienna
-	8. zmienna: zmiennaNielogiczna
-	9. zmiennaNielogiczna: wartoscLiczbowa
-	10. wartoscLiczbowa: CYFRA_NIE_ZERO
-	11. polecenie: typZmiennej Spacja nazwaZmiennej Przypisanie operacja Srednik NowaLinia
-	12. typZmiennej: TypCalkowity
-	13. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
-	14. operacja: zmienna
-	15. zmienna: zmiennaNielogiczna
-	16. zmiennaNielogiczna: wartoscLiczbowa
-	17. wartoscLiczbowa: CYFRA_NIE_ZERO
-	18. for: For LewyNawias polecenie Przecinek zmienna Przecinek operacja PrawyNawias poInstrukcji
-	19. polecenie: typZmiennej Spacja nazwaZmiennej Przypisanie operacja
-	20. operacja: zmienna
-	21. zmienna: zmiennaNielogiczna
-	22. zmiennaNielogiczna: wartoscLiczbowa
-	23. wartoscLiczbowa: Zero
-	24. zmienna: wartoscLogiczna
-	25. wartoscLogiczna: zmiennaNielogiczna porownanie zmiennaNielogiczna
-	26. zmiennaNielogiczna: nazwaZmiennej
-	27. nazwaZmiennej: CHAR_LITEROWY
-	28. porownanie: ZnakMniejszosci
-	29. zmiennaNielogiczna: wartoscLiczbowa
-	30. wartoscLiczbowa: CYFRA_NIE_ZERO CYFRA
-	31. polecenie: operacja
-	32. operacja: zmienna Inkrementacja
-	33. zmienna: zmiennaNielogiczna
-	34. zmiennaNielogiczna: nazwaZmiennej
-	35. nazwaZmiennej: CHAR_LITEROWY
-	36. poInstrukcji: LewaKlamra NowaLinia kod PrawaKlamra NowaLinia
-	37. kod: cout cout polecenie polecenie
-	38. cout: Cout ZnakMniejszosci ZnakMniejszosci operacja ZnakMniejszosci ZnakMniejszosci Endl Srednik NowaLinia
-	39. operacja: zmienna
-	40. zmienna: zmiennaNielogiczna
-	41. zmiennaNielogiczna: nazwaZmiennej
-	42. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
-	43. cout: Cout ZnakMniejszosci ZnakMniejszosci operacja ZnakMniejszosci ZnakMniejszosci Endl Srednik NowaLinia
-	44. operacja: zmienna
-	45. zmienna: zmiennaNielogiczna
-	46. zmiennaNielogiczna: nazwaZmiennej
-	47. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
-	48. polecenie: nazwaZmiennej Zwiekszenie operacja Srednik NowaLinia
-	49. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
-	50. operacja: zmienna
-	51. zmienna: zmiennaNielogiczna
-	52. zmiennaNielogiczna: nazwaZmiennej
-	53. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
-	54. polecenie: nazwaZmiennej Zwiekszenie operacja Srednik NowaLinia
-	55. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
-	56. operacja: zmienna
-	57. zmienna: zmiennaNielogiczna
-	58. zmiennaNielogiczna: nazwaZmiennej
-	59. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
+1. symbolStartowy: include Std NowaLinia FunkcjaGlowna LewaKlamra NowaLinia kod PrawaKlamra
+2. include: Include ZnakMniejszosci CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY* ZnakWiekszosci NowaLinia
+3. kod: polecenie polecenie for
+4. polecenie: typZmiennej Spacja nazwaZmiennej Przypisanie operacja Srednik NowaLinia
+5. typZmiennej: TypCalkowity
+6. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
+7. operacja: zmienna
+8. zmienna: zmiennaNielogiczna
+9. zmiennaNielogiczna: wartoscLiczbowa
+10. wartoscLiczbowa: CYFRA_NIE_ZERO
+11. polecenie: typZmiennej Spacja nazwaZmiennej Przypisanie operacja Srednik NowaLinia
+12. typZmiennej: TypCalkowity
+13. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
+14. operacja: zmienna
+15. zmienna: zmiennaNielogiczna
+16. zmiennaNielogiczna: wartoscLiczbowa
+17. wartoscLiczbowa: CYFRA_NIE_ZERO
+18. for: For LewyNawias polecenie Przecinek zmienna Przecinek operacja PrawyNawias poInstrukcji
+19. polecenie: typZmiennej Spacja nazwaZmiennej Przypisanie operacja
+20. operacja: zmienna
+21. zmienna: zmiennaNielogiczna
+22. zmiennaNielogiczna: wartoscLiczbowa
+23. wartoscLiczbowa: Zero
+24. zmienna: wartoscLogiczna
+25. wartoscLogiczna: zmiennaNielogiczna porownanie zmiennaNielogiczna
+26. zmiennaNielogiczna: nazwaZmiennej
+27. nazwaZmiennej: CHAR_LITEROWY
+28. porownanie: ZnakMniejszosci
+29. zmiennaNielogiczna: wartoscLiczbowa
+30. wartoscLiczbowa: CYFRA_NIE_ZERO CYFRA
+31. polecenie: operacja
+32. operacja: zmienna Inkrementacja
+33. zmienna: zmiennaNielogiczna
+34. zmiennaNielogiczna: nazwaZmiennej
+35. nazwaZmiennej: CHAR_LITEROWY
+36. poInstrukcji: LewaKlamra NowaLinia kod PrawaKlamra NowaLinia
+37. kod: cout cout polecenie polecenie
+38. cout: Cout ZnakMniejszosci ZnakMniejszosci operacja ZnakMniejszosci ZnakMniejszosci Endl Srednik NowaLinia
+39. operacja: zmienna
+40. zmienna: zmiennaNielogiczna
+41. zmiennaNielogiczna: nazwaZmiennej
+42. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
+43. cout: Cout ZnakMniejszosci ZnakMniejszosci operacja ZnakMniejszosci ZnakMniejszosci Endl Srednik NowaLinia
+44. operacja: zmienna
+45. zmienna: zmiennaNielogiczna
+46. zmiennaNielogiczna: nazwaZmiennej
+47. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
+48. polecenie: nazwaZmiennej Zwiekszenie operacja Srednik NowaLinia
+49. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
+50. operacja: zmienna
+51. zmienna: zmiennaNielogiczna
+52. zmiennaNielogiczna: nazwaZmiennej
+53. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
+54. polecenie: nazwaZmiennej Zwiekszenie operacja Srednik NowaLinia
+55. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
+56. operacja: zmienna
+57. zmienna: zmiennaNielogiczna
+58. zmiennaNielogiczna: nazwaZmiennej
+59. nazwaZmiennej: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY
 ```
-               
-![obraz](https://github.com/haarmeggido/Darwin/assets/92887822/038d9299-57e1-4ec4-adf6-4cbc69bd81bb)
-
 
 ## Przykład
 
