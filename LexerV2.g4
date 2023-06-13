@@ -1,4 +1,4 @@
-lexer grammar Lexer;
+lexer grammar LexerV2;
 
 Dodawanie: '+';
 Odejmowanie: '-';
@@ -14,6 +14,7 @@ Dekrementacja: '--';
 For: 'for';
 While: 'while';
 If: 'if';
+Else: 'else';
 
 LewyNawias: '(';
 PrawyNawias: ')';
@@ -24,6 +25,7 @@ TypZnakowy: 'char';
 TypCalkowity: 'int';
 TypZmiennoprzecinkowy: 'float';
 TypLogiczny: 'bool';
+TypWieloznakowy: 'string';
 
 Prawda: 'true';
 Herezja: 'false';
@@ -44,15 +46,31 @@ Zmniejszenie:'-=';
 Wymnozenie:'*=';
 Wydzielenie:'/=';
 
+Lub: '||';
+I: '&&';
+Nie: '!';
+
 Srednik: ';';
+Przecinek: ',';
+Spacja: ' ';
+NowaLinia: '\n';
 
-ZMIENNA_CHAR: '.';
-CHAR_LITEROWY: '[a-zA-Z]'; //???
+Cout: 'cout';
+Cin: 'cin';
+Endl: 'endl';
 
-CYFRA: '[0-9]';
-CYFRA_NIE_ZERO: '[1-9]';
+Std: 'using namespace std;';
+UsingNamespace: 'using namespace ';
 
-KROPKA: '\.';
+ZMIENNA_CHAR: .; //dowolny znak
+CHAR_LITEROWY_LUB_CYFROWY: [a-zA-Z0-9];
+CHAR_LITEROWY: [a-zA-Z]; //???
+
+CYFRA: [0-9];
+CYFRA_NIE_ZERO: [1-9];
+Zero: '0';
+
+KROPKA: '.'; //zwykla kropka
 
 Apostrof: '\'';
-Cudzyslow: '\"';
+Cudzyslow: '"';
