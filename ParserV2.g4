@@ -1,49 +1,63 @@
-parser grammar Parser;
+parser grammar ParserV2;
 options {
-	tokenVocab = Lexer;
+	tokenVocab = LexerV2;
 }
 
-symbolStartowy: dyrektywyPreprocesora FunkcjaGlowna LewaKlamra kod PrawaKlamra;
+symbolStartowy: include* Std NowaLinia using* FunkcjaGlowna LewaKlamra NowaLinia kod PrawaKlamra;
 
-dyrektywyPreprocesora: include*;
+include: Include ZnakMniejszosci CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY* ZnakWiekszosci NowaLinia;
 
-include: Include ZnakMniejszosci ZMIENNA_CHAR ZMIENNA_CHAR* ZnakWiekszosci;
+using: UsingNamespace Spacja zmienna Srednik NowaLinia;
 
-kod: (instrukcja|polecenie)*;
+kod: (instrukcja|(standardowePolecenie Srednik+ NowaLinia+)|cin|cout)*;
 
 instrukcja: if|while|for;
 
-if: If LewyNawias wartoscLogiczna PrawyNawias LewaKlamra kod PrawaKlamra else;
+if: If LewyNawias wyrazenie PrawyNawias poInstrukcji else+;
 
-else: (else if| else kod);
+else: Else (Spacja if)|poInstrukcji; //Spacja jest zawsze tak na wszelki, bo tu nie ma nawiasu
 
-while: While LewyNawias wartoscLogiczna PrawyNawias LewaKlamra kod PrawaKlamra;
+while: While LewyNawias wyrazenie PrawyNawias poInstrukcji;
 
-for: For LewyNawias operacja wartoscLogiczna operacja PrawyNawias LewaKlamra kod PrawaKlamra;
+for: For LewyNawias standardowePolecenie Przecinek wyrazenie Przecinek standardowePolecenie PrawyNawias poInstrukcji;
 
-polecenie: 
-    (typZmiennej+ nazwaZmiennej (Przypisanie|Zwiekszenie|Zmniejszenie|Wymnozenie|Wydzielenie))+ operacja Srednik;
-//pojedyncza linijka, w nawiasie to kolejno =, +=, -=, *=, /=, ++, --
+poInstrukcji: instrukcja|standardowePolecenie|(LewaKlamra NowaLinia kod PrawaKlamra NowaLinia);
 
-operacja:
-    zmienna Inkrementacja | zmienna Dekrementacja | Dekrementacja zmienna | Inkrementacja zmienna
-    | zmienna (operatorTypuB zmienna)*
-    | zmienna ZnakZapytania zmienna Dwukropek zmienna;
+//utworzenie zmiennej, modyfikacja zmiennej
 
-nazwaZmiennej: CHAR_LITEROWY ZMIENNA_CHAR*;
+standardowePolecenie:
+    (typZmiennej Spacja zmienna ((Przypisanie|Zwiekszenie|Zmniejszenie|Wymnozenie|Wydzielenie) wyrazenie)+)
+    |((zmienna (Przypisanie|Zwiekszenie|Zmniejszenie|Wymnozenie|Wydzielenie))+ wyrazenie);
 
-zmienna : nazwaZmiennej|wartoscLiczbowa|wartoscZnakowa|wartoscLogiczna;
+//pojedyncza linijka, w nawiasie to kolejno =, +=, -=, *=, /=
 
-typZmiennej: TypZnakowy|TypCalkowity|TypZmiennoprzecinkowy|TypLogiczny;
+wyrazenie:
+    zmienna (Inkrementacja|Dekrementacja) | (Inkrementacja|Dekrementacja) zmienna
+    | operand (operator operand)*
+    | zmienna ZnakZapytania operand Dwukropek operand; //zminimalizowana wersja, by uniknąć komplikacji
 
-operatorTypuB: Dodawanie|Odejmowanie|Mnozenie|Dzielenie|Modulo;
+operand: zmienna|wartosc;
 
-wartoscLiczbowa: CYFRA_NIE_ZERO CYFRA* (KROPKA CYFRA*)+;
+zmienna: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY*; //od teraz zmienna to po prostu nazwa zmiennej
 
-wartoscZnakowa: string| Apostrof ZMIENNA_CHAR Apostrof;
+typZmiennej: TypZnakowy|TypWieloznakowy|TypCalkowity|TypZmiennoprzecinkowy|TypLogiczny;
 
-string: Cudzyslow ZMIENNA_CHAR* Cudzyslow;
+cout: Cout (ZnakMniejszosci ZnakMniejszosci wyrazenie)* (ZnakMniejszosci ZnakMniejszosci Endl)+ Srednik NowaLinia;
 
-wartoscLogiczna: (zmienna porownanie zmienna)|Prawda|Herezja;
+cin: Cin (ZnakMniejszosci ZnakMniejszosci wyrazenie)* (ZnakMniejszosci ZnakMniejszosci Endl)+ Srednik NowaLinia;
 
-porownanie: Porownanie|ZnakMniejszosci|ZnakWiekszosci|ZnakMniejszosciLubRownosci|ZnakWiekszosciLubRownosci|ZnakNierownosci;
+wartosc: wartoscLiczbowa | wartoscZnakowa | wartoscLogiczna;
+
+wartoscLiczbowa: Zero | (CYFRA_NIE_ZERO CYFRA*) (KROPKA CYFRA*)+;
+
+wartoscZnakowa: (Cudzyslow ZMIENNA_CHAR* Cudzyslow) | (Apostrof ZMIENNA_CHAR Apostrof);
+
+wartoscLogiczna: Prawda|Herezja;//tu dokonalem duzej zmiany, sprawdzic potem
+
+operator: operatorLogiczny|operatorArytmetyczny|operatorRelacyjny;
+
+operatorArytmetyczny: Dodawanie|Odejmowanie|Mnozenie|Dzielenie|Modulo;
+
+operatorRelacyjny: Porownanie|ZnakMniejszosci|ZnakWiekszosci|ZnakMniejszosciLubRownosci|ZnakWiekszosciLubRownosci|ZnakNierownosci;
+
+operatorLogiczny: Lub|I|Nie;
