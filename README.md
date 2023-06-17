@@ -51,6 +51,72 @@ Konwerter jest uruchamiany z linii poleceń, a jego składnia wygląda następuj
 
 gdzie `input.drw` to plik wejściowy z kodem w języku Darwin, a `output.cpp` to plik wynikowy z przekonwertowanym kodem w języku C++.
 
+## Tokeny
+
+```
+| Token                      | Regex                        |
+|----------------------------|------------------------------|
+| null                       |                              |
+| Dodawanie                  | +                            |
+| Odejmowanie                | -                            |
+| Mnozenie                   | *                            |
+| Dzielenie                  | /                            |
+| Modulo                     | %                            |
+| Dwukropek                  | :                            |
+| ZnakZapytania              | ?                            |
+| Inkrementacja              | ++                           |
+| Dekrementacja              | --                           |
+| For                        | for                          |
+| While                      | while                        |
+| If                         | if                           |
+| Else                       | else                         |
+| LewyNawias                 | (                            |
+| PrawyNawias                | )                            |
+| LewaKlamra                 | {                            |
+| PrawaKlamra                | }                            |
+| TypZnakowy                 | char                         |
+| TypCalkowity               | int                          |
+| TypZmiennoprzecinkowy      | float                        |
+| TypLogiczny                | bool                         |
+| TypWieloznakowy            | string                       |
+| Prawda                     | true                         |
+| Herezja                    | false                        |
+| Porownanie                 | ==                           |
+| ZnakMniejszosci            | <                            |
+| ZnakWiekszosci             | >                            |
+| ZnakMniejszosciLubRownosci | <=                           |
+| ZnakWiekszosciLubRownosci  | >=                           |
+| ZnakNierownosci            | !=                           |
+| Include                    | #include                     |
+| FunkcjaGlowna              | int glowna()                 |
+| Przypisanie                | =                            |
+| Zwiekszenie                | +=                           |
+| Zmniejszenie               | -=                           |
+| Wymnozenie                 | *=                           |
+| Wydzielenie                | /=                           |
+| Lub                        | ||                           |
+| I                          | &&                           |
+| Nie                        | !                            |
+| Srednik                    | ;                            |
+| Przecinek                  | ,                            |
+| Spacja                     |                              |
+| NowaLinia                  | \n                           |
+| Cout                       | cout                         |
+| Cin                        | cin                          |
+| Endl                       | endl                         |
+| Std                        | using namespace std;         |
+| UsingNamespace             | using namespace              |
+| ZMIENNA_CHAR               |                              |
+| CHAR_LITEROWY_LUB_CYFROWY  |                              |
+| CHAR_LITEROWY              |                              |
+| CYFRA                      |                              |
+| CYFRA_NIE_ZERO             |                              |
+| Zero                       | 0                            |
+| KROPKA                     | .                            |
+| Apostrof                   | '                            |
+| Cudzyslow                  | "                            |
+```
+
 ## Przykład
 
 Poniżej znajduje się przykładowy blok kodu napisany w języku Darwin:
