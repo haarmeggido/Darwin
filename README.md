@@ -56,65 +56,64 @@ gdzie `input.drw` to plik wejściowy z kodem w języku Darwin, a `output.cpp` to
 ```
 | Token                      | Regex                        |
 |----------------------------|------------------------------|
-| null                       | `;`                          |
-| Dodawanie                  | `+;`                         |
-| Odejmowanie                | `-;`                         |
-| Mnozenie                   | `*;`                         |
-| Dzielenie                  | `/;`                         |
-| Modulo                     | `%;`                         |
-| Dwukropek                  | `:;`                         |
-| ZnakZapytania              | `?;`                         |
-| Inkrementacja              | `++;`                        |
-| Dekrementacja              | `--;`                        |
-| For                        | `for;`                       |
-| While                      | `while;`                     |
-| If                         | `if;`                        |
-| Else                       | `else;`                      |
-| LewyNawias                 | `(;`                         |
-| PrawyNawias                | `);`                         |
-| LewaKlamra                 | `{;`                         |
-| PrawaKlamra                | `};`                         |
-| TypZnakowy                 | `char;`                      |
-| TypCalkowity               | `int;`                       |
-| TypZmiennoprzecinkowy      | `float;`                     |
-| TypLogiczny                | `bool;`                      |
-| TypWieloznakowy            | `string;`                    |
-| Prawda                     | `true;`                      |
-| Herezja                    | `false;`                     |
-| Porownanie                 | `==;`                        |
-| ZnakMniejszosci            | `<;`                         |
-| ZnakWiekszosci             | `>;`                         |
-| ZnakMniejszosciLubRownosci | `<=;`                        |
-| ZnakWiekszosciLubRownosci  | `>=;`                        |
-| ZnakNierownosci            | `!=;`                        |
-| Include                    | `#include;`                  |
-| FunkcjaGlowna              | `int glowna();`              |
-| Przypisanie                | `=;`                         |
-| Zwiekszenie                | `+=;`                        |
-| Zmniejszenie               | `-=;`                        |
-| Wymnozenie                 | `*=;`                        |
-| Wydzielenie                | `/=;`                        |
-| Lub                        | `||;`                        |
-| I                          | `&&;`                        |
-| Nie                        | `!;`                         |
-| Srednik                    | `;;`                         |
-| Przecinek                  | `,;`                         |
-| Spacja                     | ` ;`                         |
-| NowaLinia                  | `[\n];`                      |
-| Cout                       | `cout;`                      |
-| Cin                        | `cin;`                       |
-| Endl                       | `endl;`                      |
-| Std                        | `using namespace std;;`      |
-| UsingNamespace             | `using namespace ;`          |
-| ZMIENNA_CHAR               | `[.];`                       |
-| CHAR_LITEROWY_LUB_CYFROWY  | `[a-zA-Z0-9];`               |
-| CHAR_LITEROWY              | `[a-zA-Z];`                  |
-| CYFRA                      | `[0-9];`                     |
-| CYFRA_NIE_ZERO             | `[1-9];`                     |
-| Zero                       | `0;`                         |
-| KROPKA                     | `.;`                         |
-| Apostrof                   | `';`                         |
-| Cudzyslow                  | `";`                         |
+| null                       | `null`;                      |
+| Dodawanie                  | `+`;                         |
+| Odejmowanie                | `-`;                         |
+| Mnozenie                   | `*`;                         |
+| Dzielenie                  | `/`;                         |
+| Modulo                     | `%`;                         |
+| Dwukropek                  | `:`;                         |
+| ZnakZapytania              | `?`;                         |
+| Inkrementacja              | `++`;                        |
+| Dekrementacja              | `--`;                        |
+| For                        | `dla`;                       |
+| While                      | `dopoki`;                    |
+| If                         | `jesli`;                     |
+| Else                       | `inaczej`;                   |
+| LewyNawias                 | `(`;                         |
+| PrawyNawias                | `)`;                         |
+| LewaKlamra                 | `{`;                         |
+| PrawaKlamra                | `}`;                         |
+| TypZnakowy                 | `znak`;                      |
+| TypCalkowity               | `calkowity`;                 |
+| TypZmiennoprzecinkowy      | `zmiennoprzecinkowy`;        |
+| TypLogiczny                | `logiczny`;                  |
+| TypWieloznakowy            | `wieloznakowy`;              |
+| Prawda                     | `prawda`;                    |
+| Herezja                    | `herezja`;                   |
+| Porownanie                 | `==`;                        |
+| ZnakMniejszosci            | `<`;                         |
+| ZnakWiekszosci             | `>`;                         |
+| ZnakMniejszosciLubRownosci | `<=`;                        |
+| ZnakWiekszosciLubRownosci  | `>=`;                        |
+| ZnakNierownosci            | `!=`;                        |
+| Include                    | `#zawiera`;                  |
+| FunkcjaGlowna              | `calkowity glowna()`;        |
+| Przypisanie                | `=`;                         |
+| Zwiekszenie                | `+=`;                        |
+| Zmniejszenie               | `-=`;                        |
+| Wymnozenie                 | `*=`;                        |
+| Wydzielenie                | `/=`;                        |
+| Lub                        | `||`;                        |
+| I                          | `&&`;                        |
+| Nie                        | `!`;                         |
+| Srednik                    | `;`;                         |
+| Przecinek                  | `,`;                         |
+| Spacja                     | ` `;                         |
+| NowaLinia                  | `[\n\r][\n\r]*`;             |
+| Cout                       | `cout`;                      |
+| Cin                        | `cin`;                       |
+| Endl                       | `koniecl`;                   |
+| UsingNamespace             | `uzywa przestrzeni nazw `;   |
+| ZMIENNA_CHAR               | `[A-Za-z0-9]`;               |
+| CHAR_LITEROWY              | `[a-zA-Z]`;                  |
+| NAZWA                      | `[A-Za-z][A-Za-z0-9]*`;      |
+| STRING                     | `' (~["])+ '`;               |
+| Zero                       | `0`;                         |
+| LICZBA                     | `[1-9][0-9]*`;               |
+| KROPKA                     | `.`;                         |
+| Apostrof                   | `'`;                         |
+| Cudzyslow                  | `"`;                         |
 ```
 
 ## Przykład
