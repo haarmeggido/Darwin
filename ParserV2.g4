@@ -15,7 +15,7 @@ kod: (instrukcja|(standardowePolecenie Srednik+ nowaLinia+)|cin|cout)*;
 
 instrukcja: if|while|for;
 
-if: If LewyNawias wyrazenie PrawyNawias poInstrukcji else+;
+if: If LewyNawias wyrazenie PrawyNawias poInstrukcji Srednik+ NowaLinia+ else+;
 
 else: Else (Spacja if)|poInstrukcji; //Spacja jest zawsze tak na wszelki, bo tu nie ma nawiasu
 
@@ -35,25 +35,26 @@ standardowePolecenie:
 //pojedyncza linijka, w nawiasie to kolejno =, +=, -=, *=, /=
 
 wyrazenie:
-    zmienna (Inkrementacja|Dekrementacja) | (Inkrementacja|Dekrementacja) zmienna
-    | operand (operator operand)*
-    | zmienna ZnakZapytania operand Dwukropek operand; //zminimalizowana wersja, by uniknąć komplikacji
+    (zmienna (Inkrementacja|Dekrementacja)) 
+    | ((Inkrementacja|Dekrementacja) zmienna)
+    | (operand (operator operand)*)
+    | (zmienna ZnakZapytania operand Dwukropek operand); //zminimalizowana wersja, by uniknąć komplikacji
 
 operand: zmienna|wartosc;
 
-zmienna: NAZWA|ZMIENNA_CHAR; //CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY*; od teraz zmienna to po prostu nazwa zmiennej
+zmienna: NAZWA|ZMIENNA_CHAR; //od teraz zmienna to po prostu nazwa zmiennej
 
 typZmiennej: TypZnakowy|TypWieloznakowy|TypCalkowity|TypZmiennoprzecinkowy|TypLogiczny;
 
-cout: Cout (ZnakMniejszosci ZnakMniejszosci wyrazenie)* (ZnakMniejszosci ZnakMniejszosci Endl)+ Srednik nowaLinia;
+cout: Cout (ZnakMniejszosci ZnakMniejszosci wyrazenie)* ZnakMniejszosci ZnakMniejszosci Endl Srednik nowaLinia;
 
-cin: Cin (ZnakMniejszosci ZnakMniejszosci wyrazenie)* (ZnakMniejszosci ZnakMniejszosci Endl)+ Srednik nowaLinia;
+cin: Cin (ZnakWiekszosci ZnakWiekszosci wyrazenie)* (ZnakWiekszosci ZnakWiekszosci Endl)+ Srednik nowaLinia;
 
 wartosc: wartoscLiczbowa | wartoscZnakowa | wartoscLogiczna;
 
 wartoscLiczbowa: Zero | LICZBA | (Zero|LICZBA KROPKA Zero* LICZBA);// ZMIENNA_CHAR | Zero | (CYFRA_NIE_ZERO CYFRA*) (KROPKA CYFRA*)+;
 
-wartoscZnakowa: (Cudzyslow ZMIENNA_CHAR* Cudzyslow) | (Apostrof ZMIENNA_CHAR Apostrof);
+wartoscZnakowa: STRING | (Apostrof ZMIENNA_CHAR Apostrof); // CUDZYSLOW ZMIENNA_CHAR* CUDZYSLOW
 
 wartoscLogiczna: Prawda|Herezja;//tu dokonalem duzej zmiany, sprawdzic potem
 
