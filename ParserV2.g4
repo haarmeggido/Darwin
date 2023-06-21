@@ -3,13 +3,15 @@ options {
 	tokenVocab = LexerV2;
 }
 
-symbolStartowy: include* Std NowaLinia using* FunkcjaGlowna LewaKlamra NowaLinia kod PrawaKlamra;
+symbolStartowy: (include|using)* FunkcjaGlowna LewaKlamra nowaLinia kod PrawaKlamra;
 
-include: Include ZnakMniejszosci CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY* ZnakWiekszosci NowaLinia;
+nowaLinia: NowaLinia; //NowaLinia|NowaLiniaV2;
 
-using: UsingNamespace Spacja zmienna Srednik NowaLinia;
+include: Include ZnakMniejszosci zmienna ZnakWiekszosci nowaLinia;
 
-kod: (instrukcja|(standardowePolecenie Srednik+ NowaLinia+)|cin|cout)*;
+using: UsingNamespace zmienna Srednik nowaLinia;
+
+kod: (instrukcja|(standardowePolecenie Srednik+ nowaLinia+)|cin|cout)*;
 
 instrukcja: if|while|for;
 
@@ -21,13 +23,14 @@ while: While LewyNawias wyrazenie PrawyNawias poInstrukcji;
 
 for: For LewyNawias standardowePolecenie Przecinek wyrazenie Przecinek standardowePolecenie PrawyNawias poInstrukcji;
 
-poInstrukcji: instrukcja|standardowePolecenie|(LewaKlamra NowaLinia kod PrawaKlamra NowaLinia);
+poInstrukcji: cin|cout|instrukcja|standardowePolecenie|(LewaKlamra nowaLinia kod PrawaKlamra nowaLinia);
 
 //utworzenie zmiennej, modyfikacja zmiennej
 
 standardowePolecenie:
     (typZmiennej Spacja zmienna ((Przypisanie|Zwiekszenie|Zmniejszenie|Wymnozenie|Wydzielenie) wyrazenie)+)
-    |((zmienna (Przypisanie|Zwiekszenie|Zmniejszenie|Wymnozenie|Wydzielenie))+ wyrazenie);
+    |(zmienna (Przypisanie|Zwiekszenie|Zmniejszenie|Wymnozenie|Wydzielenie) wyrazenie)
+    |wyrazenie;
 
 //pojedyncza linijka, w nawiasie to kolejno =, +=, -=, *=, /=
 
@@ -38,17 +41,17 @@ wyrazenie:
 
 operand: zmienna|wartosc;
 
-zmienna: CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY*; //od teraz zmienna to po prostu nazwa zmiennej
+zmienna: NAZWA|ZMIENNA_CHAR; //CHAR_LITEROWY CHAR_LITEROWY_LUB_CYFROWY*; od teraz zmienna to po prostu nazwa zmiennej
 
 typZmiennej: TypZnakowy|TypWieloznakowy|TypCalkowity|TypZmiennoprzecinkowy|TypLogiczny;
 
-cout: Cout (ZnakMniejszosci ZnakMniejszosci wyrazenie)* (ZnakMniejszosci ZnakMniejszosci Endl)+ Srednik NowaLinia;
+cout: Cout (ZnakMniejszosci ZnakMniejszosci wyrazenie)* (ZnakMniejszosci ZnakMniejszosci Endl)+ Srednik nowaLinia;
 
-cin: Cin (ZnakMniejszosci ZnakMniejszosci wyrazenie)* (ZnakMniejszosci ZnakMniejszosci Endl)+ Srednik NowaLinia;
+cin: Cin (ZnakMniejszosci ZnakMniejszosci wyrazenie)* (ZnakMniejszosci ZnakMniejszosci Endl)+ Srednik nowaLinia;
 
 wartosc: wartoscLiczbowa | wartoscZnakowa | wartoscLogiczna;
 
-wartoscLiczbowa: Zero | (CYFRA_NIE_ZERO CYFRA*) (KROPKA CYFRA*)+;
+wartoscLiczbowa: Zero | LICZBA | (Zero|LICZBA KROPKA Zero* LICZBA);// ZMIENNA_CHAR | Zero | (CYFRA_NIE_ZERO CYFRA*) (KROPKA CYFRA*)+;
 
 wartoscZnakowa: (Cudzyslow ZMIENNA_CHAR* Cudzyslow) | (Apostrof ZMIENNA_CHAR Apostrof);
 
