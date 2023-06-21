@@ -53,22 +53,20 @@ Nie: '!';
 Srednik: ';';
 Przecinek: ',';
 Spacja: ' ';
-NowaLinia: '\n';
+NowaLinia: [\n\r][\n\r]*;
 
 Cout: 'cout';
 Cin: 'cin';
 Endl: 'endl';
 
-Std: 'using namespace std;';
 UsingNamespace: 'using namespace ';
 
 ZMIENNA_CHAR: .; //dowolny znak
-CHAR_LITEROWY_LUB_CYFROWY: [a-zA-Z0-9];
-CHAR_LITEROWY: [a-zA-Z]; //???
+CHAR_LITEROWY: [a-zA-Z];
+NAZWA: [A-Za-z][A-Za-z0-9]*;
 
-CYFRA: [0-9];
-CYFRA_NIE_ZERO: [1-9];
 Zero: '0';
+LICZBA: [1-9][0-9]*;
 
 KROPKA: '.'; //zwykla kropka
 
