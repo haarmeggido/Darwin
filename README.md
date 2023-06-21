@@ -122,14 +122,15 @@ gdzie `input.drw` to plik wejściowy z kodem w języku Darwin, a `output.cpp` to
 Poniżej znajduje się przykładowy blok kodu napisany w języku Darwin:
 
 ```
-w_przypadku_gdy (x == 1):
-  wypisz "x jest równe 1"
-jeśli_nie w_przypadku_gdy (x == 2):
-  wypisz "x jest równe 2"
-jeśli_nie w_przypadku_gdy (x == 3):
-  wypisz "x jest równe 3"
-jeśli_nie:
-  wypisz "x jest inne"
+jesli (x == 1) {
+  cout << "x jest równe 1" << koniecl;
+} inaczej if (x == 2) {
+  cout << "x jest równe 2" << koniecl;
+} inaczej if (x == 3) {
+  cout << "x jest równe 3" << koniecl;
+} inaczej {
+  cout << "x jest inne" << koniecl;
+}
 ```
 
 Po przekonwertowaniu na język C++ otrzymamy:
