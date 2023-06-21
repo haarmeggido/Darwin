@@ -61,14 +61,15 @@ Endl: 'endl';
 
 UsingNamespace: 'using namespace ';
 
-ZMIENNA_CHAR: .; //dowolny znak
+ZMIENNA_CHAR: [A-Za-z0-9]; //dowolny znak
 CHAR_LITEROWY: [a-zA-Z];
 NAZWA: [A-Za-z][A-Za-z0-9]*;
+STRING: '"' (~["])+ '"';
 
 Zero: '0';
 LICZBA: [1-9][0-9]*;
 
 KROPKA: '.'; //zwykla kropka
 
-Apostrof: '\'';
-Cudzyslow: '"';
+Apostrof: ['];
+Cudzyslow: ["];
