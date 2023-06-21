@@ -10,29 +10,29 @@
 | ZnakZapytania              | `?`;                         |
 | Inkrementacja              | `++`;                        |
 | Dekrementacja              | `--`;                        |
-| For                        | `for`;                       |
-| While                      | `while`;                     |
-| If                         | `if`;                        |
-| Else                       | `else`;                      |
+| For                        | `dla`;                       |
+| While                      | `dopoki`;                    |
+| If                         | `jesli`;                     |
+| Else                       | `inaczej`;                   |
 | LewyNawias                 | `(`;                         |
 | PrawyNawias                | `)`;                         |
 | LewaKlamra                 | `{`;                         |
 | PrawaKlamra                | `}`;                         |
-| TypZnakowy                 | `char`;                      |
-| TypCalkowity               | `int`;                       |
-| TypZmiennoprzecinkowy      | `float`;                     |
-| TypLogiczny                | `bool`;                      |
-| TypWieloznakowy            | `string`;                    |
-| Prawda                     | `true`;                      |
-| Herezja                    | `false`;                     |
+| TypZnakowy                 | `znak`;                      |
+| TypCalkowity               | `calkowity`;                 |
+| TypZmiennoprzecinkowy      | `zmiennoprzecinkowy`;        |
+| TypLogiczny                | `logiczny`;                  |
+| TypWieloznakowy            | `wieloznakowy`;              |
+| Prawda                     | `prawda`;                    |
+| Herezja                    | `herezja`;                   |
 | Porownanie                 | `==`;                        |
 | ZnakMniejszosci            | `<`;                         |
 | ZnakWiekszosci             | `>`;                         |
 | ZnakMniejszosciLubRownosci | `<=`;                        |
 | ZnakWiekszosciLubRownosci  | `>=`;                        |
 | ZnakNierownosci            | `!=`;                        |
-| Include                    | `#include`;                  |
-| FunkcjaGlowna              | `int glowna()`;              |
+| Include                    | `#zawiera`;                  |
+| FunkcjaGlowna              | `calkowity glowna()`;        |
 | Przypisanie                | `=`;                         |
 | Zwiekszenie                | `+=`;                        |
 | Zmniejszenie               | `-=`;                        |
@@ -47,8 +47,8 @@
 | NowaLinia                  | `[\n\r][\n\r]*`;             |
 | Cout                       | `cout`;                      |
 | Cin                        | `cin`;                       |
-| Endl                       | `endl`;                      |
-| UsingNamespace             | `using namespace `;          |
+| Endl                       | `koniecl`;                   |
+| UsingNamespace             | `uzywa przestrzeni nazw `;   |
 | ZMIENNA_CHAR               | `[A-Za-z0-9]`;               |
 | CHAR_LITEROWY              | `[a-zA-Z]`;                  |
 | NAZWA                      | `[A-Za-z][A-Za-z0-9]*`;      |
