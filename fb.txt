@@ -1,0 +1,12 @@
+#include<iostream>
+using namespace std;
+int glowna(){
+int f1=1;
+int f2=1;
+for(int i=0,i<10,i++){
+cout<<f1<<endl;
+cout<<f2<<endl;
+f1+=f2;
+f2+=f1;
+}
+}
