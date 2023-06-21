@@ -1,11 +1,11 @@
-#include<iostream>
-using namespace std;
-int glowna(){
-int f1=1;
-int f2=1;
-for(int i=0,i<10,i++){
-cout<<f1<<endl;
-cout<<f2<<endl;
+#zawiera<iostream>
+uzywa przestrzeni nazw std;
+calkowity glowna(){
+calkowity f1=1;
+calkowity f2=1;
+dla(calkowity i=0,i<10,i++){
+cout<<f1<<koniecl;
+cout<<f2<<koniecl;
 f1+=f2;
 f2+=f1;
 }
