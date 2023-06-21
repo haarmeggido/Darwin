@@ -1,0 +1,16 @@
+digraph ATN {
+rankdir=LR;
+s7[fontsize=11, label="7", shape=doublecircle, fixedsize=true, width=.6];
+s6[fontsize=11,label="6", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s73[fontsize=11,label="73", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s74[fontsize=11,label="74", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s75[fontsize=11,label="75", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s76[fontsize=11,label="76", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s77[fontsize=11,label="77", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s6 -> s73 [fontname="Times-Italic", label="&epsilon;"];
+s73 -> s74 [fontsize=11, fontname="Courier", arrowsize=.7, label = "'uzywa przestrzeni nazw '", arrowhead = normal];
+s74 -> s75 [fontsize=11, fontname="Courier", arrowsize=.7, label = "<zmienna>", arrowhead = normal];
+s75 -> s76 [fontsize=11, fontname="Courier", arrowsize=.7, label = "';'", arrowhead = normal];
+s76 -> s77 [fontsize=11, fontname="Courier", arrowsize=.7, label = "<nowaLinia>", arrowhead = normal];
+s77 -> s7 [fontname="Times-Italic", label="&epsilon;"];
+}

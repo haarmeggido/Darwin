@@ -1,0 +1,18 @@
+digraph ATN {
+rankdir=LR;
+s5[fontsize=11, label="5", shape=doublecircle, fixedsize=true, width=.6];
+s67[fontsize=11,label="67", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s4[fontsize=11,label="4", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s68[fontsize=11,label="68", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s69[fontsize=11,label="69", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s70[fontsize=11,label="70", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s71[fontsize=11,label="71", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s72[fontsize=11,label="72", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s4 -> s67 [fontname="Times-Italic", label="&epsilon;"];
+s67 -> s68 [fontsize=11, fontname="Courier", arrowsize=.7, label = "'#zawiera'", arrowhead = normal];
+s68 -> s69 [fontsize=11, fontname="Courier", arrowsize=.7, label = "'<'", arrowhead = normal];
+s69 -> s70 [fontsize=11, fontname="Courier", arrowsize=.7, label = "<zmienna>", arrowhead = normal];
+s70 -> s71 [fontsize=11, fontname="Courier", arrowsize=.7, label = "'>'", arrowhead = normal];
+s71 -> s72 [fontsize=11, fontname="Courier", arrowsize=.7, label = "<nowaLinia>", arrowhead = normal];
+s72 -> s5 [fontname="Times-Italic", label="&epsilon;"];
+}

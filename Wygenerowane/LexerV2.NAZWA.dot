@@ -1,0 +1,21 @@
+digraph ATN {
+rankdir=LR;
+s102[fontsize=11, label="102", shape=doublecircle, fixedsize=true, width=.6];
+s368[fontsize=11,label="368", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s369[fontsize=11,label="369*", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s101[fontsize=11,label="101", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s363[fontsize=11,label="363", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s364[fontsize=11,label="364", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s365[fontsize=11,label="&rarr;\n365*", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s366[fontsize=11,label="&larr;\n366", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s367[fontsize=11,label="{367*\nd=2|{<p0>|<p1>}}", shape=record, fixedsize=false, peripheries=1];
+s101 -> s363 [fontname="Times-Italic", label="&epsilon;"];
+s363 -> s367 [fontsize=11, fontname="Courier", arrowsize=.7, label = "{'A'..'Z', 'a'..'z'}", arrowhead = normal];
+s367:p0 -> s365 [fontname="Times-Italic", label="&epsilon;"];
+s367:p1 -> s368 [fontname="Times-Italic", label="&epsilon;"];
+s365 -> s364 [fontname="Times-Italic", label="&epsilon;"];
+s368 -> s102 [fontname="Times-Italic", label="&epsilon;"];
+s364 -> s366 [fontsize=11, fontname="Courier", arrowsize=.7, label = "{'0'..'9', 'A'..'Z', 'a'..'z'}", arrowhead = normal];
+s366 -> s369 [fontname="Times-Italic", label="&epsilon;"];
+s369 -> s367 [fontname="Times-Italic", label="&epsilon;", style="dashed"];
+}
