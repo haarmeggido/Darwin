@@ -1,0 +1,26 @@
+digraph ATN {
+rankdir=LR;
+s19[fontsize=11, label="19", shape=doublecircle, fixedsize=true, width=.6];
+s18[fontsize=11,label="18", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s134[fontsize=11,label="134", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s135[fontsize=11,label="135", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s136[fontsize=11,label="136", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s137[fontsize=11,label="137", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s138[fontsize=11,label="138", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s139[fontsize=11,label="139", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s140[fontsize=11,label="140", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s141[fontsize=11,label="141", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s142[fontsize=11,label="142", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s143[fontsize=11,label="143", shape=circle, fixedsize=true, width=.55, peripheries=1];
+s18 -> s134 [fontname="Times-Italic", label="&epsilon;"];
+s134 -> s135 [fontsize=11, fontname="Courier", arrowsize=.7, label = "'for'", arrowhead = normal];
+s135 -> s136 [fontsize=11, fontname="Courier", arrowsize=.7, label = "'('", arrowhead = normal];
+s136 -> s137 [fontsize=11, fontname="Courier", arrowsize=.7, label = "<standardowePolecenie>", arrowhead = normal];
+s137 -> s138 [fontsize=11, fontname="Courier", arrowsize=.7, label = "','", arrowhead = normal];
+s138 -> s139 [fontsize=11, fontname="Courier", arrowsize=.7, label = "<wyrazenie>", arrowhead = normal];
+s139 -> s140 [fontsize=11, fontname="Courier", arrowsize=.7, label = "','", arrowhead = normal];
+s140 -> s141 [fontsize=11, fontname="Courier", arrowsize=.7, label = "<standardowePolecenie>", arrowhead = normal];
+s141 -> s142 [fontsize=11, fontname="Courier", arrowsize=.7, label = "')'", arrowhead = normal];
+s142 -> s143 [fontsize=11, fontname="Courier", arrowsize=.7, label = "<poInstrukcji>", arrowhead = normal];
+s143 -> s19 [fontname="Times-Italic", label="&epsilon;"];
+}
